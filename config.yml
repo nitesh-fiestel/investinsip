@@ -1,0 +1,24 @@
+# Server configuration
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+  registerDefaultExceptionMappers: false
+  rootPath: /api/*
+
+# Logging configuration
+logging:
+  level: DEBUG
+  loggers:
+    io.dropwizard: DEBUG
+    org.eclipse.jetty: DEBUG
+    org.glassfish.jersey: DEBUG
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      logFormat: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+      target: stdout
