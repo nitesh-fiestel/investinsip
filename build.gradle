@@ -10,22 +10,7 @@ repositories {
 dependencies {
     implementation 'io.dropwizard:dropwizard-core:2.1.4'
     implementation 'io.dropwizard:dropwizard-assets:2.1.4'
-    implementation 'io.dropwizard:dropwizard-views-mustache:2.1.4'
-    
-    // For JSON processing
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
-    
-    // For JAX-RS annotations
-    implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
-    
-    // For validation
-    implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
-    
-    // For CORS support
-    implementation 'org.eclipse.jetty:jetty-servlets:9.4.51.v20230217'
-    implementation 'org.eclipse.jetty:jetty-server:9.4.51.v20230217'
-    implementation 'org.eclipse.jetty:jetty-servlet:9.4.51.v20230217'
-    
+
     testImplementation 'io.dropwizard:dropwizard-testing:2.1.4'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
@@ -33,16 +18,6 @@ dependencies {
 
 application {
     mainClass = 'org.investinsip.SimpleServer'
-}
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'org.investinsip.SimpleServer'
-    }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    duplicatesStrategy = 'exclude'
 }
 
 test {
@@ -53,16 +28,10 @@ run {
     args = ['server', 'config.yml']
 }
 
-// Configure the run task to show standard output
-run.outputs.upToDateWhen { false }
-run.standardOutput = System.out
-
-// Java version compatibility
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
-
-// Configure the build to be more verbose
 compileJava {
     options.compilerArgs << '-Xlint:unchecked'
     options.deprecation = true
 }
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
