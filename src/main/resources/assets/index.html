@@ -1,70 +1,339 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Calculator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <title>SIP Calculator - Minimal Dropwizard App</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+        }
+        h1 { color: #2c3e50; text-align: center; }
+        .row { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px 16px; 
+            align-items: end;
+        }
+        .col { min-width: 220px; }
+        .card { background: #f9fbfc; border: 1px solid #e5eef3; border-radius: 8px; padding: 16px; margin: 16px 0; }
+        label { display: block; font-size: 13px; color: #34495e; margin-bottom: 4px; }
+        input { width: 100%; padding: 8px 10px; border: 1px solid #cfd8dc; border-radius: 6px; font-size: 14px; line-height: 1.2; }
+        button { padding: 8px 14px; border: 0; background: #2d7ff9; color: white; border-radius: 6px; cursor: pointer; height: 38px; }
+        button:disabled { background: #9bbcf9; cursor: not-allowed; }
+        .muted { color: #607d8b; font-size: 12px; }
+        .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+        .metric { background: #fff; border: 1px solid #e5eef3; border-radius: 8px; padding: 12px; }
+        .metric .label { font-size: 12px; color: #607d8b; }
+        .metric .value { font-size: 18px; margin-top: 6px; font-weight: 600; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Investment Calculator</h1>
-        
-        <ul class="nav nav-tabs" id="investmentTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="sip-tab" data-bs-toggle="tab" data-bs-target="#sip" type="button" role="tab">SIP Calculator</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="swp-tab" data-bs-toggle="tab" data-bs-target="#swp" type="button" role="tab">SWP Calculator</button>
-            </li>
-        </ul>
+    <h1>Investment Calculators</h1>
+    <p class="muted">SIP and SWP calculators with yearly charts. APIs at <code>/api/sip</code> and <code>/api/swp</code>.</p>
 
-        <div class="tab-content p-3 border border-top-0 rounded-bottom" id="investmentTabsContent">
-            <div class="tab-pane fade show active" id="sip" role="tabpanel">
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label for="sipAmount" class="form-label">Monthly Investment (₹)</label>
-                        <input type="number" class="form-control" id="sipAmount" value="10000">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="sipRate" class="form-label">Expected Return Rate (% p.a.)</label>
-                        <input type="number" class="form-control" id="sipRate" value="12">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="sipYears" class="form-label">Investment Period (Years)</label>
-                        <input type="number" class="form-control" id="sipYears" value="10">
-                    </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary" onclick="calculateSIP()">Calculate</button>
-                    </div>
-                </div>
-                <div id="sipResult" class="mt-4"></div>
+    <!-- SIP -->
+    <div class="card">
+        <div class="row">
+            <div class="col">
+                <label for="initial">Initial investment (₹)</label>
+                <input id="initial" type="number" min="0" step="1000" value="100000" />
             </div>
-
-            <div class="tab-pane fade" id="swp" role="tabpanel">
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label for="swpAmount" class="form-label">Investment Amount (₹)</label>
-                        <input type="number" class="form-control" id="swpAmount" value="1000000">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="swpRate" class="form-label">Expected Return Rate (% p.a.)</label>
-                        <input type="number" class="form-control" id="swpRate" value="8">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="swpYears" class="form-label">Withdrawal Period (Years)</label>
-                        <input type="number" class="form-control" id="swpYears" value="10">
-                    </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary" onclick="calculateSWP()">Calculate</button>
-                    </div>
-                </div>
-                <div id="swpResult" class="mt-4"></div>
+            <div class="col">
+                <label for="monthly">Monthly investment (₹)</label>
+                <input id="monthly" type="number" min="0" step="500" value="10000" />
+            </div>
+            <div class="col">
+                <label for="roi">Annual return rate (% p.a.)</label>
+                <input id="roi" type="number" min="0" step="0.1" value="12" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="inflation">Inflation rate (% p.a.)</label>
+                <input id="inflation" type="number" min="0" step="0.1" value="5" />
+            </div>
+            <div class="col">
+                <label for="years">Number of years</label>
+                <input id="years" type="number" min="1" step="1" value="20" />
+            </div>
+            <div class="col" style="display:flex; align-items:flex-end;">
+                <button id="calcBtn">Calculate SIP</button>
+            </div>
+        </div>
+        <div class="metrics" id="metrics" style="display:none;">
+            <div class="metric">
+                <div class="label">Total Invested</div>
+                <div class="value" id="investedVal">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="label">Future Value (Nominal)</div>
+                <div class="value" id="futureVal">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="label">Future Value (Real)</div>
+                <div class="value" id="realVal">₹0</div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/app.js"></script>
+    <div class="card">
+        <canvas id="sipChart" height="120"></canvas>
+    </div>
+
+    <!-- SWP -->
+    <div class="card">
+        <div class="row">
+            <div class="col">
+                <label for="swpInitial">Initial corpus (₹)</label>
+                <input id="swpInitial" type="number" min="0" step="1000" value="2000000" />
+            </div>
+            <div class="col">
+                <label for="swpMonthly">Monthly withdrawal (₹)</label>
+                <input id="swpMonthly" type="number" min="0" step="1000" value="40000" />
+            </div>
+            <div class="col">
+                <label for="swpRoi">Annual return rate (% p.a.)</label>
+                <input id="swpRoi" type="number" min="0" step="0.1" value="10" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="swpInflation">Inflation rate (% p.a.)</label>
+                <input id="swpInflation" type="number" min="0" step="0.1" value="5" />
+            </div>
+            <div class="col">
+                <label for="swpYears">Number of years</label>
+                <input id="swpYears" type="number" min="1" step="1" value="25" />
+            </div>
+            <div class="col" style="display:flex; align-items:flex-end;">
+                <button id="swpCalcBtn">Calculate SWP</button>
+            </div>
+        </div>
+        <div class="metrics" id="swpMetrics" style="display:none;">
+            <div class="metric">
+                <div class="label">Total Withdrawn</div>
+                <div class="value" id="swpWithdrawn">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="label">Final Corpus</div>
+                <div class="value" id="swpFinalCorpus">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="label">Corpus Exhausted (year)</div>
+                <div class="value" id="swpExhausted">—</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <canvas id="swpChart" height="120"></canvas>
+    </div>
+
+    <script>
+        function fmtINR(x) {
+            const abs = Math.abs(x);
+            const sign = x < 0 ? '-' : '';
+            if (abs >= 1e7) { // Crore
+                const v = (abs / 1e7).toFixed(2).replace(/\.00$/, '');
+                return sign + v + ' Cr';
+            }
+            if (abs >= 1e5) { // Lakh
+                const v = (abs / 1e5).toFixed(2).replace(/\.00$/, '');
+                return sign + v + ' L';
+            }
+            return sign + new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(abs);
+        }
+
+        async function fetchSip({ initial, monthly, roi, inflation, years }) {
+            const res = await fetch('/api/sip', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ initial, monthly, roi, inflation, years })
+            });
+            if (!res.ok) throw new Error('SIP API failed: ' + res.status);
+            return res.json();
+        }
+
+        // SWP
+        async function fetchSwp({ initial, monthlyWithdrawal, roi, inflation, years }) {
+            const res = await fetch('/api/swp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ initial, monthlyWithdrawal, roi, inflation, years })
+            });
+            if (!res.ok) throw new Error('SWP API failed: ' + res.status);
+            return res.json();
+        }
+
+        let swpChart;
+        function renderSwpChart(data) {
+            const ctx = document.getElementById('swpChart').getContext('2d');
+            if (swpChart) swpChart.destroy();
+            swpChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: 'Corpus (Nominal)',
+                            data: data.corpusSeries,
+                            borderColor: '#8e44ad',
+                            backgroundColor: 'rgba(142,68,173,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Corpus (Real)',
+                            data: data.realCorpusSeries,
+                            borderColor: '#e67e22',
+                            backgroundColor: 'rgba(230,126,34,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Total Withdrawn',
+                            data: data.withdrawnSeries,
+                            borderColor: '#16a085',
+                            backgroundColor: 'rgba(22,160,133,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ₹${fmtINR(ctx.parsed.y)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { ticks: { callback: (val) => '₹' + fmtINR(val) } }
+                    }
+                }
+            });
+        }
+
+        async function handleSwpCalculate() {
+            const initial = parseFloat(document.getElementById('swpInitial').value) || 0;
+            const monthlyWithdrawal = parseFloat(document.getElementById('swpMonthly').value) || 0;
+            const roi = parseFloat(document.getElementById('swpRoi').value) || 0;
+            const inflation = parseFloat(document.getElementById('swpInflation').value) || 0;
+            const years = parseInt(document.getElementById('swpYears').value) || 0;
+            if (years <= 0) return;
+            try {
+                const result = await fetchSwp({ initial, monthlyWithdrawal, roi, inflation, years });
+                renderSwpChart(result);
+                document.getElementById('swpMetrics').style.display = 'grid';
+                document.getElementById('swpWithdrawn').innerText = '₹' + fmtINR(result.totalWithdrawn);
+                document.getElementById('swpFinalCorpus').innerText = '₹' + fmtINR(result.finalCorpus);
+                document.getElementById('swpExhausted').innerText = (result.exhaustedYear || '—');
+            } catch (e) {
+                alert('Failed to calculate SWP. Please try again.');
+                console.error(e);
+            }
+        }
+
+        let chart;
+        function renderChart(data) {
+            const ctx = document.getElementById('sipChart').getContext('2d');
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: 'Future Value (Nominal)',
+                            data: data.nominalSeries,
+                            borderColor: '#2d7ff9',
+                            backgroundColor: 'rgba(45,127,249,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Total Invested',
+                            data: data.investedSeries,
+                            borderColor: '#00b894',
+                            backgroundColor: 'rgba(0,184,148,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Future Value (Real)',
+                            data: data.realSeries,
+                            borderColor: '#e17055',
+                            backgroundColor: 'rgba(225,112,85,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false },
+                    stacked: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ₹${fmtINR(ctx.parsed.y)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: (val) => '₹' + fmtINR(val)
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        async function handleCalculate() {
+            const initial = parseFloat(document.getElementById('initial').value) || 0;
+            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
+            const roi = parseFloat(document.getElementById('roi').value) || 0;
+            const inflation = parseFloat(document.getElementById('inflation').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 0;
+
+            if (years <= 0) return;
+            try {
+                const result = await fetchSip({ initial, monthly, roi, inflation, years });
+                renderChart(result);
+                document.getElementById('metrics').style.display = 'grid';
+                document.getElementById('investedVal').innerText = '₹' + fmtINR(result.investedTotal);
+                document.getElementById('futureVal').innerText = '₹' + fmtINR(result.finalNominal);
+                document.getElementById('realVal').innerText = '₹' + fmtINR(result.finalReal);
+            } catch (e) {
+                alert('Failed to calculate SIP. Please try again.');
+                console.error(e);
+            }
+        }
+
+        document.getElementById('calcBtn').addEventListener('click', handleCalculate);
+        document.getElementById('swpCalcBtn').addEventListener('click', handleSwpCalculate);
+
+        // Initial render with defaults
+        handleCalculate();
+        handleSwpCalculate();
+    </script>
 </body>
 </html>

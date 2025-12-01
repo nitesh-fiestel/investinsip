@@ -7,6 +7,8 @@ import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.investinsip.health.TemplateHealthCheck;
 import org.investinsip.resource.InvestmentResource;
+import org.investinsip.resources.SipResource;
+import org.investinsip.resources.SwpResource;
 
 import javax.servlet.DispatcherType;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -37,6 +39,8 @@ public class SimpleServer extends Application<SimpleConfig> {
         
         // Register resource
         env.jersey().register(new InvestmentResource());
+        env.jersey().register(new SipResource());
+        env.jersey().register(new SwpResource());
         
         // Register health check
         env.healthChecks().register("template", new TemplateHealthCheck());
