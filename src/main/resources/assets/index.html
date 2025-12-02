@@ -43,11 +43,11 @@
         <div class="row">
             <div class="col">
                 <label for="initial">Initial investment (₹)</label>
-                <input id="initial" type="number" min="0" step="1000" value="100000" />
+                <input id="initial" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="100000" />
             </div>
             <div class="col">
                 <label for="monthly">Monthly investment (₹)</label>
-                <input id="monthly" type="number" min="0" step="500" value="10000" />
+                <input id="monthly" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="10000" />
             </div>
             <div class="col">
                 <label for="roi">Annual return rate (% p.a.)</label>
@@ -92,11 +92,11 @@
         <div class="row">
             <div class="col">
                 <label for="swpInitial">Initial corpus (₹)</label>
-                <input id="swpInitial" type="number" min="0" step="1000" value="2000000" />
+                <input id="swpInitial" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="2000000" />
             </div>
             <div class="col">
                 <label for="swpMonthly">Monthly withdrawal (₹)</label>
-                <input id="swpMonthly" type="number" min="0" step="1000" value="40000" />
+                <input id="swpMonthly" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="40000" />
             </div>
             <div class="col">
                 <label for="swpRoi">Annual return rate (% p.a.)</label>
@@ -137,6 +137,69 @@
     </div>
 
     <script>
+        // Format number with commas
+        function formatNumberWithCommas(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Handle input formatting with caret preservation
+        function handleNumberInput(event) {
+            const input = event.target;
+            const cursorPos = input.selectionStart || 0;
+
+            // Number of digits to the left of the cursor in the current (possibly formatted) value
+            const digitsLeft = input.value.slice(0, cursorPos).replace(/[^0-9]/g, '').length;
+
+            // Raw digits only
+            const raw = input.value.replace(/[^0-9]/g, '');
+
+            // Format
+            const formatted = raw ? formatNumberWithCommas(parseInt(raw, 10)) : '';
+
+            // Apply formatted value
+            if (formatted !== input.value) {
+                input.value = formatted;
+
+                // Map the previous digit index to a new caret index in the formatted string
+                let seen = 0;
+                let newPos = 0;
+                for (let i = 0; i < formatted.length; i++) {
+                    if (/\d/.test(formatted[i])) {
+                        seen++;
+                    }
+                    newPos = i + 1;
+                    if (seen >= digitsLeft) {
+                        break;
+                    }
+                }
+                // If there were fewer digits (e.g., deletion), place caret at end
+                if (digitsLeft === 0) newPos = 0;
+                if (seen < digitsLeft) newPos = formatted.length;
+                input.setSelectionRange(newPos, newPos);
+            }
+        }
+
+        // Parse formatted number back to raw number
+        function parseFormattedNumber(str) {
+            return parseInt(str.replace(/,/g, '')) || 0;
+        }
+
+        // Initialize input event listeners (apply live formatting only to amount fields)
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInputs = ['initial', 'monthly', 'swpInitial', 'swpMonthly'];
+            amountInputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', handleNumberInput);
+                    // Pre-format default values on load
+                    if (input.value) {
+                        const raw = input.value.replace(/[^0-9]/g, '');
+                        input.value = raw ? formatNumberWithCommas(parseInt(raw, 10)) : '';
+                    }
+                }
+            });
+        });
+
         function fmtINR(x) {
             const abs = Math.abs(x);
             const sign = x < 0 ? '-' : '';
@@ -229,8 +292,8 @@
         }
 
         async function handleSwpCalculate() {
-            const initial = parseFloat(document.getElementById('swpInitial').value) || 0;
-            const monthlyWithdrawal = parseFloat(document.getElementById('swpMonthly').value) || 0;
+            const initial = parseFormattedNumber(document.getElementById('swpInitial').value);
+            const monthlyWithdrawal = parseFormattedNumber(document.getElementById('swpMonthly').value);
             const roi = parseFloat(document.getElementById('swpRoi').value) || 0;
             const inflation = parseFloat(document.getElementById('swpInflation').value) || 0;
             const years = parseInt(document.getElementById('swpYears').value) || 0;
@@ -310,8 +373,8 @@
         }
 
         async function handleCalculate() {
-            const initial = parseFloat(document.getElementById('initial').value) || 0;
-            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
+            const initial = parseFormattedNumber(document.getElementById('initial').value);
+            const monthly = parseFormattedNumber(document.getElementById('monthly').value);
             const roi = parseFloat(document.getElementById('roi').value) || 0;
             const inflation = parseFloat(document.getElementById('inflation').value) || 0;
             const years = parseInt(document.getElementById('years').value) || 0;
