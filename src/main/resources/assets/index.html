@@ -41,6 +41,37 @@
             align-items: center;
         }
         
+        .calculator-section {
+            display: none;
+        }
+        
+        .calculator-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .nav-link {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
@@ -99,15 +130,16 @@
         <div class="header-content">
             <h1 class="logo">InvestInSIP</h1>
             <nav class="main-nav">
-                <a href="#sip" class="nav-link active">SIP Calculator</a>
-                <a href="#swp" class="nav-link">SWP Calculator</a>
+                <a href="#" class="nav-link active" data-tab="sip">SIP Calculator</a>
+                <a href="#" class="nav-link" data-tab="swp">SWP Calculator</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <h2 class="page-title">Investment Calculators</h2>
-    <p class="muted">SIP and SWP calculators with yearly charts. APIs at <code>/api/sip</code> and <code>/api/swp</code>.</p>
+        <div class="calculator-container">
+            <div id="sip-section" class="calculator-section active">
+                <h2 class="page-title">SIP Calculator</h2>
 
     <!-- SIP -->
     <div id="sip" class="card">
@@ -154,11 +186,13 @@
         </div>
     </div>
 
-    <div class="card">
-        <canvas id="sipChart" height="120"></canvas>
-    </div>
+            <div class="card">
+                <canvas id="sipChart" height="120"></canvas>
+            </div>
+        </div>
 
-    <!-- SWP -->
+        <div id="swp-section" class="calculator-section">
+            <h2 class="page-title">SWP Calculator</h2>
     <div id="swp" class="card">
         <div class="row">
             <div class="col">
@@ -203,8 +237,10 @@
         </div>
     </div>
 
-    <div class="card">
-        <canvas id="swpChart" height="120"></canvas>
+            <div class="card">
+                <canvas id="swpChart" height="120"></canvas>
+            </div>
+        </div>
     </div>
     </main>
 
@@ -256,8 +292,63 @@
             return parseInt(str.replace(/,/g, '')) || 0;
         }
 
+        // Tab switching functionality
+        function showTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.calculator-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show selected section
+            document.getElementById(tabId + '-section').classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('data-tab') === tabId);
+            });
+            
+            // Handle chart visibility and calculation
+            if (tabId === 'sip') {
+                if (chart) {
+                    // If chart exists, just update its visibility
+                    setTimeout(() => {
+                        chart.resize();
+                        chart.update();
+                    }, 100);
+                } else {
+                    // If chart doesn't exist, trigger calculation
+                    handleCalculate();
+                }
+            } else if (tabId === 'swp') {
+                if (swpChart) {
+                    // If chart exists, just update its visibility
+                    setTimeout(() => {
+                        swpChart.resize();
+                        swpChart.update();
+                    }, 100);
+                } else {
+                    // If chart doesn't exist, trigger calculation
+                    handleSwpCalculate();
+                }
+            }
+        }
+        
         // Initialize input event listeners (apply live formatting only to amount fields)
         document.addEventListener('DOMContentLoaded', function() {
+            // Set up tab click handlers
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tabId = e.target.getAttribute('data-tab');
+                    showTab(tabId);
+                    // Update URL hash
+                    window.location.hash = tabId;
+                });
+            });
+            
+            // Check URL hash on load
+            const initialTab = window.location.hash.substring(1) === 'swp' ? 'swp' : 'sip';
+            showTab(initialTab);
+            
             const amountInputs = ['initial', 'monthly', 'swpInitial', 'swpMonthly'];
             amountInputs.forEach(id => {
                 const input = document.getElementById(id);
@@ -468,9 +559,12 @@
         document.getElementById('calcBtn').addEventListener('click', handleCalculate);
         document.getElementById('swpCalcBtn').addEventListener('click', handleSwpCalculate);
 
-        // Initial render with defaults
-        handleCalculate();
-        handleSwpCalculate();
+        // Initial render with defaults for active tab
+        if (window.location.hash === '#swp') {
+            showTab('swp');
+        } else {
+            showTab('sip');
+        }
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
