@@ -1,208 +1,39 @@
 > Task :compileJava UP-TO-DATE
-> Task :processResources
-> Task :classes
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
 
 > Task :run FAILED
-2025-12-02 06:47:18.526 [main] DEBUG org.eclipse.jetty.util.log - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
-2025-12-02 06:47:18.531 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @1483ms to org.eclipse.jetty.util.log.Slf4jLog
-2025-12-02 06:47:18.538 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - i.d.j.MutableServletContextHandler@460b6d54{/,null,STOPPED} added {SymlinkAllowedResourceAliasChecker@5cf87cfd{base=null,protected=null},MANAGED}
-2025-12-02 06:47:18.540 [main] DEBUG o.e.j.util.DecoratedObjectFactory - Adding Decorator: org.eclipse.jetty.util.DeprecationWarning@677b8e13
-2025-12-02 06:47:18.545 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - i.d.j.MutableServletContextHandler@460b6d54{/,null,STOPPED} added {ServletHandler@444548a0{STOPPED},MANAGED}
-2025-12-02 06:47:18.546 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - i.d.j.MutableServletContextHandler@31ddd4a4{/,null,STOPPED} added {SymlinkAllowedResourceAliasChecker@1a5f7e7c{base=null,protected=null},MANAGED}
-2025-12-02 06:47:18.546 [main] DEBUG o.e.j.util.DecoratedObjectFactory - Adding Decorator: org.eclipse.jetty.util.DeprecationWarning@5b22b970
-2025-12-02 06:47:18.546 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - i.d.j.MutableServletContextHandler@31ddd4a4{/,null,STOPPED} added {ServletHandler@22d1886d{STOPPED},MANAGED}
-2025-12-02 06:47:18.555 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@22d1886d{STOPPED} added {tasks==io.dropwizard.servlets.tasks.TaskServlet@6907b8e{jsp=null,order=-1,inst=false,async=true,src=EMBEDDED:null,STOPPED},AUTO}
-2025-12-02 06:47:18.556 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@22d1886d{STOPPED} added {[/tasks/*]=>tasks,POJO}
-2025-12-02 06:47:18.592 [main] INFO  i.d.server.DefaultServerFactory - Registering jersey handler with root path prefix: /
-2025-12-02 06:47:18.593 [main] INFO  i.d.server.DefaultServerFactory - Registering admin handler with root path prefix: /
-2025-12-02 06:47:18.594 [main] INFO  io.dropwizard.assets.AssetsBundle - Registering AssetBundle with name: assets for path /*
-2025-12-02 06:47:18.595 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {assets==io.dropwizard.servlets.assets.AssetServlet@ac107383{jsp=null,order=-1,inst=false,async=true,src=EMBEDDED:null,STOPPED},AUTO}
-Running SimpleServer
-2025-12-02 06:47:18.596 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {[/*]=>assets,POJO}
-2025-12-02 06:47:18.665 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {CORS==org.eclipse.jetty.servlets.CrossOriginFilter@7de843ef{inst=false,async=true,src=EMBEDDED:null},AUTO}
-2025-12-02 06:47:18.672 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {[/*]/[]/[INCLUDE, REQUEST, FORWARD, ERROR, ASYNC]=>CORS,POJO}
-2025-12-02 06:47:18.673 [main] INFO  io.dropwizard.server.ServerFactory - Starting investinsip-simple
-2025-12-02 06:47:18.679 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - InstrumentedQueuedThreadPool[qtp338765435]@1431267b{STOPPED,8<=0<=1024,i=0,r=-1,q=0}[NO_TRY] added {org.eclipse.jetty.util.thread.ThreadPoolBudget@6ac0b715,POJO}
-2025-12-02 06:47:18.680 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {InstrumentedQueuedThreadPool[dw]@1431267b{STOPPED,8<=0<=1024,i=0,r=-1,q=0}[NO_TRY],AUTO}
-2025-12-02 06:47:18.681 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {io.dropwizard.lifecycle.ExecutorServiceManager@598260a6(TimeBoundHealthCheck-pool-%d),AUTO}
-2025-12-02 06:47:18.683 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {ErrorHandler@3ac8cf9b{STOPPED},AUTO}
-2025-12-02 06:47:18.684 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {io.dropwizard.jersey.filter.AllowedMethodsFilter-55ec556==io.dropwizard.jersey.filter.AllowedMethodsFilter@55ec556{inst=false,async=true,src=EMBEDDED:null},AUTO}
-2025-12-02 06:47:18.684 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {[/*]/[]/[REQUEST]=>io.dropwizard.jersey.filter.AllowedMethodsFilter-55ec556,POJO}
-2025-12-02 06:47:18.685 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {io.dropwizard.servlets.ThreadNameFilter-4b869331==io.dropwizard.servlets.ThreadNameFilter@4b869331{inst=false,async=true,src=EMBEDDED:null},AUTO}
-2025-12-02 06:47:18.685 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {[/*]/[]/[REQUEST]=>io.dropwizard.servlets.ThreadNameFilter-4b869331,POJO}
-2025-12-02 06:47:18.686 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {jersey==io.dropwizard.jersey.setup.JerseyServletContainer@baa68670{jsp=null,order=-1,inst=false,async=true,src=EMBEDDED:null,STOPPED},AUTO}
-2025-12-02 06:47:18.686 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@444548a0{STOPPED} added {[/api/*]=>jersey,POJO}
-2025-12-02 06:47:18.689 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - InstrumentedHandler@138caeca{STOPPED} added {i.d.j.MutableServletContextHandler@460b6d54{/,null,STOPPED},MANAGED}
-2025-12-02 06:47:18.692 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@22d1886d{STOPPED} added {com.codahale.metrics.servlets.AdminServlet-64355120==com.codahale.metrics.servlets.AdminServlet@90549c02{jsp=null,order=-1,inst=false,async=true,src=EMBEDDED:null,STOPPED},AUTO}
-2025-12-02 06:47:18.693 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@22d1886d{STOPPED} added {[/*]=>com.codahale.metrics.servlets.AdminServlet-64355120,POJO}
-2025-12-02 06:47:18.693 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@22d1886d{STOPPED} added {io.dropwizard.jersey.filter.AllowedMethodsFilter-64b7225f==io.dropwizard.jersey.filter.AllowedMethodsFilter@64b7225f{inst=false,async=true,src=EMBEDDED:null},AUTO}
-2025-12-02 06:47:18.693 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServletHandler@22d1886d{STOPPED} added {[/*]/[]/[REQUEST]=>io.dropwizard.jersey.filter.AllowedMethodsFilter-64b7225f,POJO}
-2025-12-02 06:47:18.703 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@63716833[HTTP/1.1] added {HttpConfiguration@573284a5{32768/8192,8192/8192,https://:0,[]},POJO}
-2025-12-02 06:47:18.710 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - InstrumentedConnectionFactory@bdd2027{STOPPED} added {HttpConnectionFactory@63716833[HTTP/1.1],AUTO}
-2025-12-02 06:47:18.719 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@771d1ffb{null, ()}{0.0.0.0:0} added {Server@5f18f9d2{STOPPED}[9.4.49.v20220914],UNMANAGED}
-2025-12-02 06:47:18.719 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@771d1ffb{null, ()}{0.0.0.0:0} added {InstrumentedQueuedThreadPool[dw]@1431267b{STOPPED,8<=0<=1024,i=0,r=-1,q=0}[NO_TRY],AUTO}
-2025-12-02 06:47:18.719 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@771d1ffb{null, ()}{0.0.0.0:0} added {ScheduledExecutorScheduler@507b79f7{STOPPED},AUTO}
-2025-12-02 06:47:18.720 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@771d1ffb{null, ()}{0.0.0.0:0} added {ArrayByteBufferPool@1da4b6b3{minBufferCapacity=64, maxBufferCapacity=65536, maxQueueLength=-1, factor=1024},POJO}
-2025-12-02 06:47:18.720 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@771d1ffb{null, (http/1.1)}{0.0.0.0:0} added {InstrumentedConnectionFactory@bdd2027{STOPPED},AUTO}
-2025-12-02 06:47:18.720 [main] DEBUG o.e.jetty.server.AbstractConnector - ServerConnector@771d1ffb{HTTP/1.1, (http/1.1)}{0.0.0.0:0} added InstrumentedConnectionFactory@bdd2027{STOPPED}
-2025-12-02 06:47:18.723 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@771d1ffb{HTTP/1.1, (http/1.1)}{0.0.0.0:0} added {SelectorManager@ServerConnector@771d1ffb{HTTP/1.1, (http/1.1)}{0.0.0.0:0},MANAGED}
-2025-12-02 06:47:18.726 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - InstrumentedQueuedThreadPool[qtp1765865093]@6940f685{STOPPED,1<=0<=64,i=0,r=-1,q=0}[NO_TRY] added {org.eclipse.jetty.util.thread.ThreadPoolBudget@47b179d7,POJO}
-2025-12-02 06:47:18.726 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {InstrumentedQueuedThreadPool[dw-admin]@6940f685{STOPPED,1<=0<=64,i=0,r=-1,q=0}[NO_TRY],AUTO}
-2025-12-02 06:47:18.727 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@39008c9f[HTTP/1.1] added {HttpConfiguration@162b3d47{32768/8192,8192/8192,https://:0,[]},POJO}
-2025-12-02 06:47:18.728 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - InstrumentedConnectionFactory@3402b4c9{STOPPED} added {HttpConnectionFactory@39008c9f[HTTP/1.1],AUTO}
-2025-12-02 06:47:18.728 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@95bb2a2{null, ()}{0.0.0.0:0} added {Server@5f18f9d2{STOPPED}[9.4.49.v20220914],UNMANAGED}
-2025-12-02 06:47:18.728 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@95bb2a2{null, ()}{0.0.0.0:0} added {InstrumentedQueuedThreadPool[dw-admin]@6940f685{STOPPED,1<=0<=64,i=0,r=-1,q=0}[NO_TRY],AUTO}
-2025-12-02 06:47:18.729 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@95bb2a2{null, ()}{0.0.0.0:0} added {ScheduledExecutorScheduler@783115d9{STOPPED},AUTO}
-2025-12-02 06:47:18.729 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@95bb2a2{null, ()}{0.0.0.0:0} added {ArrayByteBufferPool@46d567cb{minBufferCapacity=64, maxBufferCapacity=65536, maxQueueLength=-1, factor=1024},POJO}
-2025-12-02 06:47:18.729 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@95bb2a2{null, (http/1.1)}{0.0.0.0:0} added {InstrumentedConnectionFactory@3402b4c9{STOPPED},AUTO}
-2025-12-02 06:47:18.729 [main] DEBUG o.e.jetty.server.AbstractConnector - ServerConnector@95bb2a2{HTTP/1.1, (http/1.1)}{0.0.0.0:0} added InstrumentedConnectionFactory@3402b4c9{STOPPED}
-2025-12-02 06:47:18.730 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@95bb2a2{HTTP/1.1, (http/1.1)}{0.0.0.0:0} added {SelectorManager@ServerConnector@95bb2a2{HTTP/1.1, (http/1.1)}{0.0.0.0:0},MANAGED}
-2025-12-02 06:47:18.730 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {application@771d1ffb{HTTP/1.1, (http/1.1)}{0.0.0.0:8080},AUTO}
-2025-12-02 06:47:18.730 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {admin@95bb2a2{HTTP/1.1, (http/1.1)}{0.0.0.0:8081},AUTO}
-2025-12-02 06:47:18.731 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - RoutingHandler@499683c4{STOPPED} added {InstrumentedHandler@138caeca{STOPPED},AUTO}
-2025-12-02 06:47:18.732 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - RoutingHandler@499683c4{STOPPED} added {i.d.j.MutableServletContextHandler@31ddd4a4{/,null,STOPPED},AUTO}
-2025-12-02 06:47:18.736 [main] DEBUG o.e.jetty.http.PreEncodedHttpField - HttpField encoders loaded: [org.eclipse.jetty.http.Http1FieldPreEncoder@64fc097e]
-2025-12-02 06:47:18.752 [main] DEBUG o.e.j.http.pathmap.ServletPathSpec - Creating ServletPathSpec[*.svgz] (group: SUFFIX_GLOB, prefix: "null", suffix: "svgz")
-2025-12-02 06:47:18.752 [main] DEBUG o.e.jetty.http.pathmap.PathMappings - Added MappedResource[pathSpec=ServletPathSpec@9727ded2{*.svgz},resource=true] to PathMappings[size=1]
-2025-12-02 06:47:18.753 [main] DEBUG o.e.j.s.handler.gzip.GzipHandler - ZipExceptionHandlingGzipHandler@4bbb49b0{STOPPED,min=32,inflate=-1} mime types IncludeExclude@f096f37{i=[],ip=CONTAINS,e=[image/ief, image/vnd.wap.wbmp, image/jpeg, application/bzip2, image/x-portable-graymap, application/brotli, image/bmp, image/gif, image/x-icon, image/apng, audio/midi, image/webp, video/x-msvideo, image/x-xbitmap, application/x-rar-compressed, image/avif, image/x-portable-bitmap, image/x-rgb, image/x-cmu-raster, application/gzip, audio/x-wav, audio/x-pn-realaudio, audio/basic, application/compress, audio/x-aiff, video/x.ms.asx, video/x.ms.asf, image/png, video/vnd.rn-realvideo, image/x-xwindowdump, image/jpeg2000, video/x-sgi-movie, audio/mpeg, image/xcf, video/mpeg, image/x-portable-pixmap, image/tiff, image/x-portable-anymap, image/x-xpixmap, application/zip, video/quicktime, application/x-xz, video/mp4],ep=CONTAINS}
-2025-12-02 06:47:18.753 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - ZipExceptionHandlingGzipHandler@4bbb49b0{STOPPED,min=32,inflate=-1} added {RoutingHandler@499683c4{STOPPED},MANAGED}
-2025-12-02 06:47:18.763 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - RequestLogHandler@379ce046{STOPPED} added {null,AUTO}
-2025-12-02 06:47:18.763 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {null,MANAGED}
-2025-12-02 06:47:18.764 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - RequestLogHandler@379ce046{STOPPED} added {ZipExceptionHandlingGzipHandler@4bbb49b0{STOPPED,min=256,inflate=8192},MANAGED}
-2025-12-02 06:47:18.768 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - StatisticsHandler@59c33386{STOPPED,r=0,d=0} added {RequestLogHandler@379ce046{STOPPED},MANAGED}
-2025-12-02 06:47:18.768 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - Server@5f18f9d2{STOPPED}[9.4.49.v20220914] added {StatisticsHandler@59c33386{STOPPED,r=0,d=0},MANAGED}
-2025-12-02 06:47:18.769 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - starting Server@5f18f9d2{STOPPED}[9.4.49.v20220914]
-2025-12-02 06:47:18.769 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - starting InstrumentedQueuedThreadPool[dw]@1431267b{STOPPED,8<=0<=1024,i=0,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.770 [main] DEBUG o.e.j.u.t.ReservedThreadExecutor - ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}
-2025-12-02 06:47:18.770 [main] DEBUG o.e.j.u.component.ContainerLifeCycle - InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=0<=1024,i=0,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}] added {ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0},AUTO}
-2025-12-02 06:47:18.770 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - starting ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}
-2025-12-02 06:47:18.772 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED @1725ms ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}
-2025-12-02 06:47:18.773 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-16,5,main]
-2025-12-02 06:47:18.773 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-17,5,main]
-2025-12-02 06:47:18.774 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-18,5,main]
-2025-12-02 06:47:18.774 [dw-16] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=2<=1024,i=2,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.774 [dw-17] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=3<=1024,i=3,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.774 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-19,5,main]
-2025-12-02 06:47:18.774 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-20,5,main]
-2025-12-02 06:47:18.775 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-21,5,main]
-2025-12-02 06:47:18.775 [dw-19] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=5<=1024,i=5,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.775 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-22,5,main]
-2025-12-02 06:47:18.775 [dw-20] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=6<=1024,i=6,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.775 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Starting Thread[dw-23,5,main]
-2025-12-02 06:47:18.775 [dw-18] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=5<=1024,i=5,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.775 [dw-21] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=7<=1024,i=7,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.775 [dw-22] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=8<=1024,i=8,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.775 [dw-23] DEBUG o.e.j.util.thread.QueuedThreadPool - Runner started for InstrumentedQueuedThreadPool[dw]@1431267b{STARTING,8<=8<=1024,i=8,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.777 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED @1730ms InstrumentedQueuedThreadPool[dw]@1431267b{STARTED,8<=8<=1024,i=8,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.788 [main] WARN  o.e.j.u.component.AbstractLifeCycle - FAILED Server@5f18f9d2{FAILED}[9.4.49.v20220914]: java.lang.RuntimeException: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-java.lang.RuntimeException: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-	at org.eclipse.jetty.setuid.SetUIDListener.lifeCycleStarting(SetUIDListener.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.setStarting(AbstractLifeCycle.java:205)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:72)
-	at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:52)
-	at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:68)
-	at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:98)
+io.dropwizard.configuration.ConfigurationParsingException: config.yml has an error:
+  * Unrecognized field at: appName
+    Did you mean?:
+      - admin
+      - server
+      - health
+      - logging
+      - metrics
+
+	at io.dropwizard.configuration.ConfigurationParsingException$Builder.build(ConfigurationParsingException.java:277)
+	at io.dropwizard.configuration.BaseConfigurationFactory.build(BaseConfigurationFactory.java:161)
+	at io.dropwizard.configuration.BaseConfigurationFactory.build(BaseConfigurationFactory.java:94)
+	at io.dropwizard.cli.ConfiguredCommand.parseConfiguration(ConfiguredCommand.java:139)
+	at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:85)
 	at io.dropwizard.cli.Cli.run(Cli.java:78)
 	at io.dropwizard.Application.run(Application.java:94)
 	at org.investinsip.SimpleServer.main(SimpleServer.java:22)
-Caused by: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:349)
-	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:310)
-	at org.eclipse.jetty.setuid.SetUIDListener.lifeCycleStarting(SetUIDListener.java:216)
-	... 8 common frames omitted
-Caused by: java.net.BindException: Address already in use
-	at java.base/sun.nio.ch.Net.bind0(Native Method)
-	at java.base/sun.nio.ch.Net.bind(Net.java:459)
-	at java.base/sun.nio.ch.Net.bind(Net.java:448)
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
-	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80)
-	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:344)
-	... 10 common frames omitted
-2025-12-02 06:47:18.788 [main] ERROR io.dropwizard.cli.ServerCommand - Unable to start server, shutting down
-java.lang.RuntimeException: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-	at org.eclipse.jetty.setuid.SetUIDListener.lifeCycleStarting(SetUIDListener.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.setStarting(AbstractLifeCycle.java:205)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:72)
-	at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:52)
-	at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:68)
-	at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:98)
-	at io.dropwizard.cli.Cli.run(Cli.java:78)
-	at io.dropwizard.Application.run(Application.java:94)
-	at org.investinsip.SimpleServer.main(SimpleServer.java:22)
-Caused by: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:349)
-	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:310)
-	at org.eclipse.jetty.setuid.SetUIDListener.lifeCycleStarting(SetUIDListener.java:216)
-	... 8 common frames omitted
-Caused by: java.net.BindException: Address already in use
-	at java.base/sun.nio.ch.Net.bind0(Native Method)
-	at java.base/sun.nio.ch.Net.bind(Net.java:459)
-	at java.base/sun.nio.ch.Net.bind(Net.java:448)
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
-	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80)
-	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:344)
-	... 10 common frames omitted
-2025-12-02 06:47:18.788 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping Server@5f18f9d2{FAILED}[9.4.49.v20220914]
-2025-12-02 06:47:18.789 [main] DEBUG org.eclipse.jetty.server.Server - doStop Server@5f18f9d2{STOPPING}[9.4.49.v20220914]
-2025-12-02 06:47:18.791 [main] DEBUG o.e.j.s.h.AbstractHandlerContainer - Graceful shutdown Server@5f18f9d2{STOPPING}[9.4.49.v20220914] by 
-2025-12-02 06:47:18.791 [main] DEBUG o.e.j.server.handler.AbstractHandler - stopping Server@5f18f9d2{STOPPING}[9.4.49.v20220914]
-2025-12-02 06:47:18.793 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping InstrumentedQueuedThreadPool[dw]@1431267b{STARTED,8<=8<=1024,i=8,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.794 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Stopping InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=8<=1024,i=8,r=-1,q=0}[ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}]
-2025-12-02 06:47:18.794 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping ReservedThreadExecutor@4e93dcb9{reserved=0/8,pending=0}
-2025-12-02 06:47:18.798 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED ReservedThreadExecutor@4e93dcb9{reserved=-1/8,pending=0}
-2025-12-02 06:47:18.799 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Waiting for Thread[dw-21,5,main] for 14999
-2025-12-02 06:47:18.799 [dw-16] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-17] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-16] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-17] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-16] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-16,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-17] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-17,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-19] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-20] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-21] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-19] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.799 [dw-18] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-21] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-20] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-19] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-19,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-18] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-21] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-21,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-20] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-20,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-18] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-18,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Waiting for Thread[dw-18,5,] for 14998
-2025-12-02 06:47:18.800 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Waiting for Thread[dw-23,5,main] for 14998
-2025-12-02 06:47:18.800 [dw-22] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-22] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-22] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-22,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.800 [dw-23] DEBUG o.e.j.util.thread.QueuedThreadPool - run org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.801 [dw-23] DEBUG o.e.j.util.thread.QueuedThreadPool - ran org.eclipse.jetty.util.thread.QueuedThreadPool$$Lambda$420/0x00000008402ff840@3f8108c in InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.801 [dw-23] DEBUG o.e.j.util.thread.QueuedThreadPool - Thread[dw-23,5,main] exited for InstrumentedQueuedThreadPool[dw]@1431267b{STOPPING,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.801 [main] DEBUG o.e.j.util.thread.QueuedThreadPool - Waiting for Thread[dw-22,5,] for 14997
-2025-12-02 06:47:18.801 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED InstrumentedQueuedThreadPool[dw]@1431267b{STOPPED,8<=0<=1024,i=8,r=-1,q=0}[NO_TRY]
-2025-12-02 06:47:18.803 [main] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED Server@5f18f9d2{STOPPED}[9.4.49.v20220914]
-java.lang.RuntimeException: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-	at org.eclipse.jetty.setuid.SetUIDListener.lifeCycleStarting(SetUIDListener.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.setStarting(AbstractLifeCycle.java:205)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:72)
-	at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:52)
-	at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:68)
-	at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:98)
-	at io.dropwizard.cli.Cli.run(Cli.java:78)
-	at io.dropwizard.Application.run(Application.java:94)
-	at org.investinsip.SimpleServer.main(SimpleServer.java:22)
-Caused by: java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:8080
-	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:349)
-	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:310)
-	at org.eclipse.jetty.setuid.SetUIDListener.lifeCycleStarting(SetUIDListener.java:216)
-	... 8 more
-Caused by: java.net.BindException: Address already in use
-	at java.base/sun.nio.ch.Net.bind0(Native Method)
-	at java.base/sun.nio.ch.Net.bind(Net.java:459)
-	at java.base/sun.nio.ch.Net.bind(Net.java:448)
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
-	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80)
-	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:344)
-	... 10 more
+Caused by: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "appName" (class org.investinsip.SimpleConfig), not marked as ignorable (5 known properties: "server", "health", "logging", "metrics", "admin"])
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: org.investinsip.SimpleConfig["appName"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:61)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnknownProperty(DeserializationContext.java:1127)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:2036)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:1700)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownVanilla(BeanDeserializerBase.java:1678)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:284)
+	at com.fasterxml.jackson.module.blackbird.deser.SuperSonicBeanDeserializer.deserialize(SuperSonicBeanDeserializer.java:155)
+	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:323)
+	at com.fasterxml.jackson.databind.ObjectMapper._readValue(ObjectMapper.java:4650)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2831)
+	at io.dropwizard.configuration.BaseConfigurationFactory.build(BaseConfigurationFactory.java:148)
+	... 6 more
 
 [Incubating] Problems report is available at: file:///home/nitesh/investinsip/build/reports/problems/problems-report.html
 
@@ -225,4 +56,4 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
 BUILD FAILED in 2s
-3 actionable tasks: 2 executed, 1 up-to-date
+3 actionable tasks: 1 executed, 2 up-to-date

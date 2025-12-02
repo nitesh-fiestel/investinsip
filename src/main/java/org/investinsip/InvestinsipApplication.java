@@ -7,6 +7,7 @@ import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.investinsip.health.TemplateHealthCheck;
 import org.investinsip.resource.InvestmentResource;
+import org.investinsip.resources.VisitResource;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -38,6 +39,10 @@ public class InvestinsipApplication extends Application<InvestinsipConfiguration
         // Register resources
         final InvestmentResource resource = new InvestmentResource();
         environment.jersey().register(resource);
+        
+        // Register visit tracking resource
+        final String dataDir = configuration.getDataDir();
+        environment.jersey().register(new VisitResource(dataDir + "/visits.json"));
 
         // Register health checks
         final TemplateHealthCheck healthCheck = new TemplateHealthCheck();

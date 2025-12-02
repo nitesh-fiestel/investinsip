@@ -9,6 +9,10 @@ server:
   registerDefaultExceptionMappers: false
   rootPath: /api/*
 
+# Application configuration
+appName: "InvestInSIP"
+dataDir: "/home/nitesh/investinsip/data"
+
 # Logging configuration
 logging:
   level: DEBUG
