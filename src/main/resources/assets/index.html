@@ -21,6 +21,65 @@
             align-items: end;
         }
         .col { min-width: 220px; }
+        /* Header Styles */
+        .app-header {
+            background: #2c3e50;
+            color: white;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            color: white;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: white;
+            border-bottom-color: #3498db;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+        
         .card { background: #f9fbfc; border: 1px solid #e5eef3; border-radius: 8px; padding: 16px; margin: 16px 0; }
         label { display: block; font-size: 13px; color: #34495e; margin-bottom: 4px; }
         input { width: 100%; padding: 8px 10px; border: 1px solid #cfd8dc; border-radius: 6px; font-size: 14px; line-height: 1.2; }
@@ -35,11 +94,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-    <h1>Investment Calculators</h1>
+    <!-- Top Header Bar -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="logo">InvestInSIP</h1>
+            <nav class="main-nav">
+                <a href="#sip" class="nav-link active">SIP Calculator</a>
+                <a href="#swp" class="nav-link">SWP Calculator</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="page-title">Investment Calculators</h2>
     <p class="muted">SIP and SWP calculators with yearly charts. APIs at <code>/api/sip</code> and <code>/api/swp</code>.</p>
 
     <!-- SIP -->
-    <div class="card">
+    <div id="sip" class="card">
         <div class="row">
             <div class="col">
                 <label for="initial">Initial investment (₹)</label>
@@ -88,7 +159,7 @@
     </div>
 
     <!-- SWP -->
-    <div class="card">
+    <div id="swp" class="card">
         <div class="row">
             <div class="col">
                 <label for="swpInitial">Initial corpus (₹)</label>
@@ -135,6 +206,7 @@
     <div class="card">
         <canvas id="swpChart" height="120"></canvas>
     </div>
+    </main>
 
     <script>
         // Format number with commas
@@ -399,6 +471,29 @@
         // Initial render with defaults
         handleCalculate();
         handleSwpCalculate();
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
