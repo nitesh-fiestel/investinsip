@@ -31,7 +31,7 @@ public class InvestinsipApplication extends Application<InvestinsipConfiguration
 
     @Override
     public void run(InvestinsipConfiguration configuration, Environment environment) {
-        System.out.println("Starting " + configuration.getAppName());
+        System.out.println("Starting " + configuration.getAppConfig().getAppName());
         
         // Configure CORS
         configureCors(environment);
@@ -41,7 +41,7 @@ public class InvestinsipApplication extends Application<InvestinsipConfiguration
         environment.jersey().register(resource);
         
         // Register visit tracking resource
-        final String dataDir = configuration.getDataDir();
+        final String dataDir = configuration.getAppConfig().getDataDir();
         environment.jersey().register(new VisitResource(dataDir + "/visits.json"));
 
         // Register health checks
