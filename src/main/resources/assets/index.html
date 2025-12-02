@@ -172,6 +172,13 @@
         .metric { background: #fff; border: 1px solid #e5eef3; border-radius: 8px; padding: 12px; }
         .metric .label { font-size: 12px; color: #607d8b; }
         .metric .value { font-size: 18px; margin-top: 6px; font-weight: 600; }
+        
+        /* Pie Chart Styles */
+        #profitPieChart {
+            width: 100% !important;
+            max-width: 400px;
+            margin: 0 auto;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -240,6 +247,13 @@
 
             <div class="card">
                 <canvas id="sipChart" height="120"></canvas>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Investment vs Returns</h3>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <canvas id="profitPieChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -557,10 +571,74 @@
             }
         }
 
-        let chart;
+        let chart, profitPieChart;
+        function renderProfitPieChart(invested, returns) {
+            const ctx = document.getElementById('profitPieChart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (profitPieChart) {
+                profitPieChart.destroy();
+            }
+            
+            // Calculate percentages
+            const total = invested + returns;
+            const investedPercent = Math.round((invested / total) * 100);
+            const returnsPercent = 100 - investedPercent;
+            
+            profitPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        `Invested: ₹${fmtINR(invested)} (${investedPercent}%)`,
+                        `Returns: ₹${fmtINR(returns)} (${returnsPercent}%)`
+                    ],
+                    datasets: [{
+                        data: [invested, returns],
+                        backgroundColor: ['#4e73df', '#1cc88a'],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    return `${label}: ₹${fmtINR(value)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
         function renderChart(data) {
             const ctx = document.getElementById('sipChart').getContext('2d');
             if (chart) chart.destroy();
+            
+            // Calculate profit
+            const invested = data.investedTotal;
+            const returns = data.finalNominal - invested;
+            
+            // Render profit pie chart
+            renderProfitPieChart(invested, returns);
+            
+            // Render main line chart
             chart = new Chart(ctx, {
                 type: 'line',
                 data: {
