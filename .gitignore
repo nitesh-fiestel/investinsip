@@ -40,4 +40,5 @@ bin/
 .vscode/
 
 ### Mac OS ###
-.DS_Storeanalytics.json
+.DS_Store
+analytics.json

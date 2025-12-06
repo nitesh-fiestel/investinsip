@@ -5,8 +5,10 @@ import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.investinsip.health.TemplateHealthCheck;
 import org.investinsip.core.AnalyticsManager;
+import org.investinsip.core.RateLimitFilter;
+import org.investinsip.core.SecurityHeadersFilter;
+import org.investinsip.health.TemplateHealthCheck;
 import org.investinsip.resource.InvestmentResource;
 import org.investinsip.resources.AnalyticsResource;
 import org.investinsip.resources.SipResource;
@@ -52,6 +54,13 @@ public class SimpleServer extends Application<SimpleConfig> {
         env.jersey().register(resource);
         env.jersey().register(sipResource);
         env.jersey().register(swpResource);
+
+        // Security Filters
+        env.servlets().addFilter("RateLimitFilter", new RateLimitFilter())
+                .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+
+        env.servlets().addFilter("SecurityHeadersFilter", new SecurityHeadersFilter())
+                .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
         // Register health check
         env.healthChecks().register("template", new TemplateHealthCheck());
