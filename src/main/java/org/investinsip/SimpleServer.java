@@ -6,7 +6,9 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.investinsip.health.TemplateHealthCheck;
+import org.investinsip.core.AnalyticsManager;
 import org.investinsip.resource.InvestmentResource;
+import org.investinsip.resources.AnalyticsResource;
 import org.investinsip.resources.SipResource;
 import org.investinsip.resources.SwpResource;
 
@@ -18,7 +20,8 @@ import java.util.EnumSet;
 
 public class SimpleServer extends Application<SimpleConfig> {
     public static void main(String[] args) throws Exception {
-        // Delegate to Dropwizard with CLI args so Gradle's run task (server config.yml) is honored
+        // Delegate to Dropwizard with CLI args so Gradle's run task (server config.yml)
+        // is honored
         new SimpleServer().run(args);
     }
 
@@ -36,24 +39,32 @@ public class SimpleServer extends Application<SimpleConfig> {
     @Override
     public void run(SimpleConfig config, Environment env) {
         System.out.println("Running SimpleServer");
-        
+
         // Register resource
-        env.jersey().register(new InvestmentResource());
-        env.jersey().register(new SipResource());
-        env.jersey().register(new SwpResource());
-        
+        // Analytics
+        final AnalyticsManager analyticsManager = new AnalyticsManager(env.getObjectMapper());
+        final AnalyticsResource analyticsResource = new AnalyticsResource(analyticsManager);
+        env.jersey().register(analyticsResource);
+
+        final InvestmentResource resource = new InvestmentResource();
+        final SipResource sipResource = new SipResource();
+        final SwpResource swpResource = new SwpResource();
+        env.jersey().register(resource);
+        env.jersey().register(sipResource);
+        env.jersey().register(swpResource);
+
         // Register health check
         env.healthChecks().register("template", new TemplateHealthCheck());
-        
+
         // Configure CORS
         env.servlets().addFilter("CORS", CrossOriginFilter.class)
-            .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-            
+                .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+
         // Add CORS headers
         env.jersey().register(new ContainerResponseFilter() {
             @Override
-            public void filter(ContainerRequestContext requestContext, 
-                             ContainerResponseContext responseContext) {
+            public void filter(ContainerRequestContext requestContext,
+                    ContainerResponseContext responseContext) {
                 responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
                 responseContext.getHeaders().add("Access-Control-Allow-Headers", "*");
                 responseContext.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");

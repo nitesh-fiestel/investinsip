@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: #f9fbfc;
+            border: 1px solid #e5eef3;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            color: #607d8b;
+            font-size: 14px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <h1>Website Traffic Analysis</h1>
+
+    <div class="card">
+        <div class="stat-value" id="totalHits">...</div>
+        <div class="stat-label">Total Hits (All Time)</div>
+    </div>
+
+    <div class="card">
+        <canvas id="trafficChart"></canvas>
+    </div>
+
+    <script>
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/analytics/stats');
+                if (!res.ok) throw new Error('API failed');
+                const data = await res.json();
+
+                // Update Total Hits
+                document.getElementById('totalHits').innerText = data.totalHits.toLocaleString();
+
+                // Sort dates
+                const sortedDates = Object.keys(data.dailyHits).sort();
+                const hits = sortedDates.map(date => data.dailyHits[date]);
+
+                // Render Chart
+                const ctx = document.getElementById('trafficChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: sortedDates,
+                        datasets: [{
+                            label: 'Daily Hits',
+                            data: hits,
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { precision: 0 } }
+                        }
+                    }
+                });
+
+            } catch (e) {
+                document.body.innerHTML = '<h3>Failed to load analytics data.</h3>';
+                console.error(e);
+            }
+        }
+
+        loadStats();
+    </script>
+</body>
+
+</html>

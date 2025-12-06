@@ -556,6 +556,9 @@
                 carefully.
                 The information provided here is for educational purposes only.
             </p>
+            <p style="font-size: 0.7rem; margin-top: 10px;">
+                <a href="/analytics.html" style="color: #555; text-decoration: none;">Site Analytics</a>
+            </p>
         </div>
     </footer>
 
@@ -691,6 +694,15 @@
             }
             return sign + new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(abs);
         }
+
+        // Analytics Tracker
+        (async function trackHit() {
+            try {
+                await fetch('/api/analytics/hit', { method: 'POST' });
+            } catch (e) {
+                console.error('Failed to track hit', e);
+            }
+        })();
 
         async function fetchSip({ initial, monthly, roi, inflation, years }) {
             const res = await fetch('/api/sip', {
