@@ -29,6 +29,11 @@ public class SimpleServer extends Application<SimpleConfig> {
 
     @Override
     public void initialize(Bootstrap<SimpleConfig> bootstrap) {
+        // Enable environment variable substitution in config.yml
+        bootstrap.setConfigurationSourceProvider(
+                new io.dropwizard.configuration.SubstitutingSourceProvider(
+                        bootstrap.getConfigurationSourceProvider(),
+                        new io.dropwizard.configuration.EnvironmentVariableSubstitutor(false)));
         // Serve static files from /assets directory under /
         bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
     }

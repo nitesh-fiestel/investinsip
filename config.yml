@@ -11,7 +11,7 @@ server:
   rootPath: /api/*
 
 # Analytics configuration
-analyticsFile: analytics.json
+analyticsFile: ${ANALYTICS_FILE:-analytics.json}
 
 # Logging configuration
 logging:
