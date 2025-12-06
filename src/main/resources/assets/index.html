@@ -231,7 +231,7 @@
 
         .metrics {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 12px;
             margin-top: 12px;
         }
@@ -259,6 +259,23 @@
             width: 100% !important;
             max-width: 400px;
             margin: 0 auto;
+        }
+
+        /* SWP Metrics Specific Override */
+        #swpMetrics {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 992px) {
+            #swpMetrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            #swpMetrics {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -381,6 +398,10 @@
                             <div class="metric">
                                 <div class="label">Final Corpus</div>
                                 <div class="value" id="swpFinalCorpus">₹0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="label">Last Monthly Withdrawal</div>
+                                <div class="value" id="swpLastMonthly">₹0</div>
                             </div>
                             <div class="metric">
                                 <div class="label">Corpus Exhausted (year)</div>
@@ -727,6 +748,7 @@
                 document.getElementById('swpMetrics').style.display = 'grid';
                 document.getElementById('swpWithdrawn').innerText = '₹' + fmtINR(result.totalWithdrawn);
                 document.getElementById('swpFinalCorpus').innerText = '₹' + fmtINR(result.finalCorpus);
+                document.getElementById('swpLastMonthly').innerText = '₹' + fmtINR(result.lastMonthlyWithdrawal);
                 document.getElementById('swpExhausted').innerText = (result.exhaustedYear || '—');
             } catch (e) {
                 alert('Failed to calculate SWP. Please try again.');
