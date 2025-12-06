@@ -8,17 +8,18 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class AnalyticsManager {
-    private static final String FILE_PATH = "analytics.json";
+    private final String filePath;
     private AnalyticsData data;
     private final ObjectMapper mapper;
 
-    public AnalyticsManager(ObjectMapper mapper) {
+    public AnalyticsManager(ObjectMapper mapper, String filePath) {
         this.mapper = mapper;
+        this.filePath = filePath;
         loadData();
     }
 
     private void loadData() {
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         if (file.exists()) {
             try {
                 this.data = mapper.readValue(file, AnalyticsData.class);
@@ -33,7 +34,7 @@ public class AnalyticsManager {
 
     private void saveData() {
         try {
-            mapper.writeValue(new File(FILE_PATH), this.data);
+            mapper.writeValue(new File(filePath), this.data);
         } catch (IOException e) {
             e.printStackTrace();
         }

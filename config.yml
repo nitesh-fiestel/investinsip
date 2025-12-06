@@ -7,7 +7,11 @@ server:
     - type: http
       port: 8081
   registerDefaultExceptionMappers: false
+  registerDefaultExceptionMappers: false
   rootPath: /api/*
+
+# Analytics configuration
+analyticsFile: analytics.json
 
 # Logging configuration
 logging:

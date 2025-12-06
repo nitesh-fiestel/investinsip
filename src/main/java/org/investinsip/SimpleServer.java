@@ -44,7 +44,8 @@ public class SimpleServer extends Application<SimpleConfig> {
 
         // Register resource
         // Analytics
-        final AnalyticsManager analyticsManager = new AnalyticsManager(env.getObjectMapper());
+        final AnalyticsManager analyticsManager = new AnalyticsManager(env.getObjectMapper(),
+                config.getAnalyticsFile());
         final AnalyticsResource analyticsResource = new AnalyticsResource(analyticsManager);
         env.jersey().register(analyticsResource);
 
