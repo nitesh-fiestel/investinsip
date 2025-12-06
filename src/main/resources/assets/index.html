@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>SIP Calculator - Investment Calculator</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9271026697232246"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <style>
-        *, *::before, *::after { box-sizing: border-box; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             max-width: 1200px;
@@ -13,24 +19,25 @@
             padding: 20px;
             text-align: left;
         }
-        
+
         .app-container {
             display: flex;
             gap: 20px;
             align-items: flex-start;
         }
-        
+
         .main-content {
             flex: 1;
-            min-width: 0; /* Prevents flex items from overflowing */
+            min-width: 0;
+            /* Prevents flex items from overflowing */
         }
-        
+
         .ad-sidebar {
             width: 300px;
             position: sticky;
             top: 20px;
         }
-        
+
         .ad-container {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
@@ -39,12 +46,12 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         @media (max-width: 992px) {
             .app-container {
                 flex-direction: column;
             }
-            
+
             .ad-sidebar {
                 width: 100%;
                 position: static;
@@ -53,36 +60,45 @@
                 gap: 20px;
                 justify-content: center;
             }
-            
+
             .ad-container {
                 width: calc(50% - 10px);
             }
         }
-        
+
         @media (max-width: 576px) {
             .ad-container {
                 width: 100%;
             }
         }
-        h1 { color: #2c3e50; text-align: center; }
-        .row { 
-            display: grid; 
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .row {
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px 16px; 
+            gap: 12px 16px;
             align-items: end;
         }
-        .col { min-width: 220px; }
+
+        .col {
+            min-width: 220px;
+        }
+
         /* Header Styles */
         .app-header {
             background: #2c3e50;
             color: white;
             padding: 0.5rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        
+
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -91,16 +107,16 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .calculator-section {
             display: none;
         }
-        
+
         .calculator-section.active {
             display: block;
             animation: fadeIn 0.3s ease-in-out;
         }
-        
+
         .nav-link {
             padding: 10px 20px;
             color: #fff;
@@ -108,33 +124,40 @@
             border-radius: 4px;
             transition: background-color 0.2s;
         }
-        
+
         .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         .nav-link.active {
             background-color: rgba(255, 255, 255, 0.2);
             font-weight: bold;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             margin: 0;
             color: white;
         }
-        
+
         .main-nav {
             display: flex;
             gap: 1.5rem;
         }
-        
+
         .nav-link {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
@@ -143,36 +166,94 @@
             border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
         }
-        
+
         .nav-link:hover,
         .nav-link.active {
             color: white;
             border-bottom-color: #3498db;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         .page-title {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 1.5rem;
         }
-        
-        .card { background: #f9fbfc; border: 1px solid #e5eef3; border-radius: 8px; padding: 16px; margin: 16px 0; }
-        label { display: block; font-size: 13px; color: #34495e; margin-bottom: 4px; }
-        input { width: 100%; padding: 8px 10px; border: 1px solid #cfd8dc; border-radius: 6px; font-size: 14px; line-height: 1.2; }
-        button { padding: 8px 14px; border: 0; background: #2d7ff9; color: white; border-radius: 6px; cursor: pointer; height: 38px; }
-        button:disabled { background: #9bbcf9; cursor: not-allowed; }
-        .muted { color: #607d8b; font-size: 12px; }
-        .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
-        .metric { background: #fff; border: 1px solid #e5eef3; border-radius: 8px; padding: 12px; }
-        .metric .label { font-size: 12px; color: #607d8b; }
-        .metric .value { font-size: 18px; margin-top: 6px; font-weight: 600; }
-        
+
+        .card {
+            background: #f9fbfc;
+            border: 1px solid #e5eef3;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #34495e;
+            margin-bottom: 4px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #cfd8dc;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        button {
+            padding: 8px 14px;
+            border: 0;
+            background: #2d7ff9;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            height: 38px;
+        }
+
+        button:disabled {
+            background: #9bbcf9;
+            cursor: not-allowed;
+        }
+
+        .muted {
+            color: #607d8b;
+            font-size: 12px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .metric {
+            background: #fff;
+            border: 1px solid #e5eef3;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .metric .label {
+            font-size: 12px;
+            color: #607d8b;
+        }
+
+        .metric .value {
+            font-size: 18px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
         /* Pie Chart Styles */
         #profitPieChart {
             width: 100% !important;
@@ -182,6 +263,7 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
+
 <body>
     <!-- Top Header Bar -->
     <header class="app-header">
@@ -196,191 +278,206 @@
 
     <div class="app-container">
         <main class="main-content">
-        <div class="calculator-container">
-            <div id="sip-section" class="calculator-section active">
-                <h2 class="page-title">SIP Calculator</h2>
+            <div class="calculator-container">
+                <div id="sip-section" class="calculator-section active">
+                    <h2 class="page-title">SIP Calculator</h2>
 
-    <!-- SIP -->
-    <div id="sip" class="card">
-        <div class="row">
-            <div class="col">
-                <label for="initial">Initial investment (₹)</label>
-                <input id="initial" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="100000" />
-            </div>
-            <div class="col">
-                <label for="monthly">Monthly investment (₹)</label>
-                <input id="monthly" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="10000" />
-            </div>
-            <div class="col">
-                <label for="roi">Annual return rate (% p.a.)</label>
-                <input id="roi" type="number" min="0" step="0.1" value="12" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="inflation">Inflation rate (% p.a.)</label>
-                <input id="inflation" type="number" min="0" step="0.1" value="5" />
-            </div>
-            <div class="col">
-                <label for="years">Number of years</label>
-                <input id="years" type="number" min="1" step="1" value="20" />
-            </div>
-            <div class="col" style="display:flex; align-items:flex-end;">
-                <button id="calcBtn">Calculate SIP</button>
-            </div>
-        </div>
-        <div class="metrics" id="metrics" style="display:none;">
-            <div class="metric">
-                <div class="label">Total Invested</div>
-                <div class="value" id="investedVal">₹0</div>
-            </div>
-            <div class="metric">
-                <div class="label">Future Value (Nominal)</div>
-                <div class="value" id="futureVal">₹0</div>
-            </div>
-            <div class="metric">
-                <div class="label">Future Value (Real)</div>
-                <div class="value" id="realVal">₹0</div>
-            </div>
-        </div>
-    </div>
+                    <!-- SIP -->
+                    <div id="sip" class="card">
+                        <div class="row">
+                            <div class="col">
+                                <label for="initial">Initial investment (₹)</label>
+                                <input id="initial" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off"
+                                    value="100000" />
+                            </div>
+                            <div class="col">
+                                <label for="monthly">Monthly investment (₹)</label>
+                                <input id="monthly" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off"
+                                    value="10000" />
+                            </div>
+                            <div class="col">
+                                <label for="roi">Annual return rate (% p.a.)</label>
+                                <input id="roi" type="number" min="0" step="0.1" value="12" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="inflation">Inflation rate (% p.a.)</label>
+                                <input id="inflation" type="number" min="0" step="0.1" value="5" />
+                            </div>
+                            <div class="col">
+                                <label for="years">Number of years</label>
+                                <input id="years" type="number" min="1" step="1" value="20" />
+                            </div>
+                            <div class="col" style="display:flex; align-items:flex-end;">
+                                <button id="calcBtn">Calculate SIP</button>
+                            </div>
+                        </div>
+                        <div class="metrics" id="metrics" style="display:none;">
+                            <div class="metric">
+                                <div class="label">Total Invested</div>
+                                <div class="value" id="investedVal">₹0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="label">Future Value (Nominal)</div>
+                                <div class="value" id="futureVal">₹0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="label">Future Value (Real)</div>
+                                <div class="value" id="realVal">₹0</div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="card">
-                <canvas id="sipChart" height="120"></canvas>
-            </div>
-            
-            <div class="card" style="margin-top: 20px;">
-                <h3>Investment vs Returns</h3>
-                <div style="max-width: 500px; margin: 0 auto;">
-                    <canvas id="profitPieChart"></canvas>
+                    <div class="card">
+                        <canvas id="sipChart" height="120"></canvas>
+                    </div>
+
+                    <div class="card" style="margin-top: 20px;">
+                        <h3>Investment vs Returns</h3>
+                        <div style="max-width: 500px; margin: 0 auto;">
+                            <canvas id="profitPieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="swp-section" class="calculator-section">
+                    <h2 class="page-title">SWP Calculator</h2>
+                    <div id="swp" class="card">
+                        <div class="row">
+                            <div class="col">
+                                <label for="swpInitial">Initial corpus (₹)</label>
+                                <input id="swpInitial" type="text" inputmode="numeric" pattern="[0-9,]*"
+                                    autocomplete="off" value="2000000" />
+                            </div>
+                            <div class="col">
+                                <label for="swpMonthly">Monthly withdrawal (₹)</label>
+                                <input id="swpMonthly" type="text" inputmode="numeric" pattern="[0-9,]*"
+                                    autocomplete="off" value="40000" />
+                            </div>
+                            <div class="col">
+                                <label for="swpRoi">Annual return rate (% p.a.)</label>
+                                <input id="swpRoi" type="number" min="0" step="0.1" value="10" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="swpInflation">Inflation rate (% p.a.)</label>
+                                <input id="swpInflation" type="number" min="0" step="0.1" value="5" />
+                            </div>
+                            <div class="col">
+                                <label for="swpYears">Number of years</label>
+                                <input id="swpYears" type="number" min="1" step="1" value="25" />
+                            </div>
+                            <div class="col" style="display:flex; align-items:flex-end;">
+                                <button id="swpCalcBtn">Calculate SWP</button>
+                            </div>
+                        </div>
+                        <div class="metrics" id="swpMetrics" style="display:none;">
+                            <div class="metric">
+                                <div class="label">Total Withdrawn</div>
+                                <div class="value" id="swpWithdrawn">₹0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="label">Final Corpus</div>
+                                <div class="value" id="swpFinalCorpus">₹0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="label">Corpus Exhausted (year)</div>
+                                <div class="value" id="swpExhausted">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <canvas id="swpChart" height="120"></canvas>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="content-section" style="margin-top: 40px; border-top: 1px solid #e9ecef; padding-top: 20px;">
+                <article class="info-card">
+                    <h2>What is a Systematic Investment Plan (SIP)?</h2>
+                    <p>A <strong>Systematic Investment Plan (SIP)</strong> is a disciplined way of investing in mutual
+                        funds. It allows investors to invest a fixed amount regularly—typically monthly or
+                        quarterly—into a mutual fund scheme.</p>
+                    <h3>Key Benefits of SIP</h3>
+                    <ul>
+                        <li><strong>Rupee Cost Averaging:</strong> You buy more units when markets are low and fewer
+                            when they are high, averaging out your purchase cost over time.</li>
+                        <li><strong>Power of Compounding:</strong> Reinvesting returns allows your money to grow
+                            exponentially over long periods.</li>
+                        <li><strong>Financial Discipline:</strong> Automating investments ensures you save before you
+                            spend.</li>
+                    </ul>
+                </article>
 
-        <div id="swp-section" class="calculator-section">
-            <h2 class="page-title">SWP Calculator</h2>
-    <div id="swp" class="card">
-        <div class="row">
-            <div class="col">
-                <label for="swpInitial">Initial corpus (₹)</label>
-                <input id="swpInitial" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="2000000" />
-            </div>
-            <div class="col">
-                <label for="swpMonthly">Monthly withdrawal (₹)</label>
-                <input id="swpMonthly" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="40000" />
-            </div>
-            <div class="col">
-                <label for="swpRoi">Annual return rate (% p.a.)</label>
-                <input id="swpRoi" type="number" min="0" step="0.1" value="10" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="swpInflation">Inflation rate (% p.a.)</label>
-                <input id="swpInflation" type="number" min="0" step="0.1" value="5" />
-            </div>
-            <div class="col">
-                <label for="swpYears">Number of years</label>
-                <input id="swpYears" type="number" min="1" step="1" value="25" />
-            </div>
-            <div class="col" style="display:flex; align-items:flex-end;">
-                <button id="swpCalcBtn">Calculate SWP</button>
-            </div>
-        </div>
-        <div class="metrics" id="swpMetrics" style="display:none;">
-            <div class="metric">
-                <div class="label">Total Withdrawn</div>
-                <div class="value" id="swpWithdrawn">₹0</div>
-            </div>
-            <div class="metric">
-                <div class="label">Final Corpus</div>
-                <div class="value" id="swpFinalCorpus">₹0</div>
-            </div>
-            <div class="metric">
-                <div class="label">Corpus Exhausted (year)</div>
-                <div class="value" id="swpExhausted">—</div>
-            </div>
-        </div>
-    </div>
+                <article class="info-card" style="margin-top: 30px;">
+                    <h2>Understanding Systematic Withdrawal Plans (SWP)</h2>
+                    <p>An <strong>SWP</strong> allows you to withdraw a fixed amount from your mutual fund investments
+                        at regular intervals. It is essentially the reverse of a SIP and is ideal for generating a
+                        regular income stream, such as during retirement.</p>
+                    <ul>
+                        <li><strong>Regular Income:</strong> Create your own "pension" from your accumulated corpus.
+                        </li>
+                        <li><strong>Capital Appreciation:</strong> If the withdrawal rate is lower than the fund's
+                            growth/return rate, your capital continues to grow even while you withdraw.</li>
+                        <li><strong>Tax Efficiency:</strong> Withdrawals are treated as redemptions, attracting capital
+                            gains tax only on the profit component of the withdrawn amount.</li>
+                    </ul>
+                </article>
 
-            <div class="card">
-                <canvas id="swpChart" height="120"></canvas>
+                <article class="info-card" style="margin-top: 30px;">
+                    <h2>Inflation: The Silent Wealth Eater</h2>
+                    <p>When planning for long-term goals, it is crucial to account for <strong>inflation</strong>. A
+                        corpus that looks huge today might lose significant purchasing power in 20 years.</p>
+                    <p>The calculators on this page provide two key metrics:</p>
+                    <ul>
+                        <li><strong>Nominal Value:</strong> The raw monetary value of your investment in the future.
+                        </li>
+                        <li><strong>Real Value:</strong> The inflation-adjusted value, showing what that money could
+                            actually buy in today's terms.</li>
+                    </ul>
+                </article>
+
+                <article class="faq-section" style="margin-top: 30px;">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <h4>What is the ideal amount to start a SIP?</h4>
+                        <p>You can start a SIP with as little as ₹500 per month. The ideal amount depends on your
+                            financial goals. Use the calculator above to reverse-engineer your required monthly
+                            investment based on your target corpus.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Can I stop my SIP anytime?</h4>
+                        <p>Yes, SIPs are flexible. You can stop, pause, or increase your SIP amount at any time without
+                            penalty (exit loads may apply if you redeem units within a specific period, usually 1 year).
+                        </p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is SIP better than a lump sum?</h4>
+                        <p>SIP is generally safer for volatile markets as it averages out cost. Lump sum investments are
+                            beneficial when markets are low, but timing the market is difficult. SIP eliminates the need
+                            for market timing.</p>
+                    </div>
+                </article>
             </div>
-        </div>
-    </div>
-        <div class="content-section" style="margin-top: 40px; border-top: 1px solid #e9ecef; padding-top: 20px;">
-            <article class="info-card">
-                <h2>What is a Systematic Investment Plan (SIP)?</h2>
-                <p>A <strong>Systematic Investment Plan (SIP)</strong> is a disciplined way of investing in mutual funds. It allows investors to invest a fixed amount regularly—typically monthly or quarterly—into a mutual fund scheme.</p>
-                <h3>Key Benefits of SIP</h3>
-                <ul>
-                    <li><strong>Rupee Cost Averaging:</strong> You buy more units when markets are low and fewer when they are high, averaging out your purchase cost over time.</li>
-                    <li><strong>Power of Compounding:</strong> Reinvesting returns allows your money to grow exponentially over long periods.</li>
-                    <li><strong>Financial Discipline:</strong> Automating investments ensures you save before you spend.</li>
-                </ul>
-            </article>
-
-            <article class="info-card" style="margin-top: 30px;">
-                <h2>Understanding Systematic Withdrawal Plans (SWP)</h2>
-                <p>An <strong>SWP</strong> allows you to withdraw a fixed amount from your mutual fund investments at regular intervals. It is essentially the reverse of a SIP and is ideal for generating a regular income stream, such as during retirement.</p>
-                <ul>
-                    <li><strong>Regular Income:</strong> Create your own "pension" from your accumulated corpus.</li>
-                    <li><strong>Capital Appreciation:</strong> If the withdrawal rate is lower than the fund's growth/return rate, your capital continues to grow even while you withdraw.</li>
-                    <li><strong>Tax Efficiency:</strong> Withdrawals are treated as redemptions, attracting capital gains tax only on the profit component of the withdrawn amount.</li>
-                </ul>
-            </article>
-
-            <article class="info-card" style="margin-top: 30px;">
-                <h2>Inflation: The Silent Wealth Eater</h2>
-                <p>When planning for long-term goals, it is crucial to account for <strong>inflation</strong>. A corpus that looks huge today might lose significant purchasing power in 20 years.</p>
-                <p>The calculators on this page provide two key metrics:</p>
-                <ul>
-                    <li><strong>Nominal Value:</strong> The raw monetary value of your investment in the future.</li>
-                    <li><strong>Real Value:</strong> The inflation-adjusted value, showing what that money could actually buy in today's terms.</li>
-                </ul>
-            </article>
-
-            <article class="faq-section" style="margin-top: 30px;">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <h4>What is the ideal amount to start a SIP?</h4>
-                    <p>You can start a SIP with as little as ₹500 per month. The ideal amount depends on your financial goals. Use the calculator above to reverse-engineer your required monthly investment based on your target corpus.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Can I stop my SIP anytime?</h4>
-                    <p>Yes, SIPs are flexible. You can stop, pause, or increase your SIP amount at any time without penalty (exit loads may apply if you redeem units within a specific period, usually 1 year).</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Is SIP better than a lump sum?</h4>
-                    <p>SIP is generally safer for volatile markets as it averages out cost. Lump sum investments are beneficial when markets are low, but timing the market is difficult. SIP eliminates the need for market timing.</p>
-                </div>
-            </article>
-        </div>
         </main>
-        
+
         <aside class="ad-sidebar">
             <!-- AdSense Ad Unit -->
             <div class="ad-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9271026697232246"
-                     data-ad-slot="1234567890"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9271026697232246"
+                    data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true">
                 </ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-            
+
             <!-- Optional: Add another ad unit below -->
             <div class="ad-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9271026697232246"
-                     data-ad-slot="0987654321"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9271026697232246"
+                    data-ad-slot="0987654321" data-ad-format="auto" data-full-width-responsive="true">
                 </ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
@@ -388,6 +485,24 @@
             </div>
         </aside>
     </div>
+
+    <footer style="background: #2c3e50; color: #ecf0f1; padding: 40px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2025 InvestInSIP. All rights reserved.</p>
+            <div style="margin-top: 15px;">
+                <a href="/privacy.html" style="color: #bdc3c7; text-decoration: none; margin: 0 10px;">Privacy
+                    Policy</a> |
+                <a href="/terms.html" style="color: #bdc3c7; text-decoration: none; margin: 0 10px;">Terms of
+                    Service</a> |
+                <a href="/about.html" style="color: #bdc3c7; text-decoration: none; margin: 0 10px;">About Us</a>
+            </div>
+            <p style="font-size: 0.8rem; color: #95a5a6; margin-top: 20px;">
+                Disclaimer: Mutual Fund investments are subject to market risks, read all scheme related documents
+                carefully.
+                The information provided here is for educational purposes only.
+            </p>
+        </div>
+    </footer>
 
     <script>
         // Format number with commas
@@ -445,12 +560,12 @@
             });
             // Show selected section
             document.getElementById(tabId + '-section').classList.add('active');
-            
+
             // Update active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.toggle('active', link.getAttribute('data-tab') === tabId);
             });
-            
+
             // Handle chart visibility and calculation
             if (tabId === 'sip') {
                 if (chart) {
@@ -476,9 +591,9 @@
                 }
             }
         }
-        
+
         // Initialize input event listeners (apply live formatting only to amount fields)
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Set up tab click handlers
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -489,11 +604,11 @@
                     window.location.hash = tabId;
                 });
             });
-            
+
             // Check URL hash on load
             const initialTab = window.location.hash.substring(1) === 'swp' ? 'swp' : 'sip';
             showTab(initialTab);
-            
+
             const amountInputs = ['initial', 'monthly', 'swpInitial', 'swpMonthly'];
             amountInputs.forEach(id => {
                 const input = document.getElementById(id);
@@ -622,17 +737,17 @@
         let chart, profitPieChart;
         function renderProfitPieChart(invested, returns) {
             const ctx = document.getElementById('profitPieChart').getContext('2d');
-            
+
             // Destroy existing chart if it exists
             if (profitPieChart) {
                 profitPieChart.destroy();
             }
-            
+
             // Calculate percentages
             const total = invested + returns;
             const investedPercent = Math.round((invested / total) * 100);
             const returnsPercent = 100 - investedPercent;
-            
+
             profitPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -663,7 +778,7 @@
                         },
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     const label = context.label || '';
                                     const value = context.raw || 0;
                                     return `${label}: ₹${fmtINR(value)}`;
@@ -678,14 +793,14 @@
         function renderChart(data) {
             const ctx = document.getElementById('sipChart').getContext('2d');
             if (chart) chart.destroy();
-            
+
             // Calculate profit
             const invested = data.investedTotal;
             const returns = data.finalNominal - invested;
-            
+
             // Render profit pie chart
             renderProfitPieChart(invested, returns);
-            
+
             // Render main line chart
             chart = new Chart(ctx, {
                 type: 'line',
@@ -774,18 +889,18 @@
         } else {
             showTab('sip');
         }
-        
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 // Update active state
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
                 });
                 this.classList.add('active');
-                
+
                 // Scroll to section
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
@@ -799,4 +914,5 @@
         });
     </script>
 </body>
+
 </html>
