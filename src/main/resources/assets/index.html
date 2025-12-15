@@ -322,6 +322,59 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Strategies Page Styles Merged */
+        .strategy-section {
+            background: #fff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .strategy-section h2 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+
+        .chart-container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #f9fbfc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .highlight-box {
+            background-color: #f0f7fb;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .strategy-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .strategy-section th,
+        .strategy-section td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .strategy-section th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .strategy-section tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -334,6 +387,7 @@
             <nav class="main-nav">
                 <a href="#" class="nav-link active" data-tab="sip">SIP Calculator</a>
                 <a href="#" class="nav-link" data-tab="swp">SWP Calculator</a>
+                <a href="#strategies" class="nav-link">Strategies</a>
             </nav>
         </div>
     </header>
@@ -505,6 +559,232 @@
                     </ul>
                 </article>
 
+                <article class="info-card" style="margin-top: 30px;">
+                    <h2>Why Start Early?</h2>
+                    <p>Time is your biggest asset. The magic of compounding works best when you give it time. Check out
+                        our <a href="#strategies">Strategies Section</a> to see how delaying your investment by just 5
+                        years can cost you lakhs!</p>
+                </article>
+
+                <article class="info-card" style="margin-top: 30px;">
+                    <h2>SIP vs Fixed Deposit vs Gold</h2>
+                    <p>Historically, equity mutual funds (SIP) have outperformed traditional asset classes like Fixed
+                        Deposits and Gold over the long term (10+ years).</p>
+                    <table class="table" style="width:100%; border-collapse: collapse; margin-top:15px;">
+                        <tr style="background:#f8f9fa;">
+                            <th style="padding:10px; border:1px solid #dee2e6;">Asset Class</th>
+                            <th style="padding:10px; border:1px solid #dee2e6;">Avg Return (10Y)</th>
+                            <th style="padding:10px; border:1px solid #dee2e6;">Risk</th>
+                            <th style="padding:10px; border:1px solid #dee2e6;">Liquidity</th>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #dee2e6;"><strong>Equity SIP</strong></td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">12% - 15%</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">High</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">High</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Fixed Deposit</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">6% - 7.5%</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Low</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Medium</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Gold</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">8% - 10%</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Medium</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">High</td>
+                        </tr>
+                    </table>
+                </article>
+
+                <article class="info-card" style="margin-top: 30px;">
+                    <h2>SIP Returns Matrix (Estimated @ 12%)</h2>
+                    <p>See how your money grows over time with consistent investing. Values are approximate.</p>
+                    <div style="overflow-x: auto;">
+                        <table class="table"
+                            style="width:100%; border-collapse: collapse; margin-top:15px; font-size: 14px; text-align: right;">
+                            <tr style="background:#2c3e50; color:white; text-align: center;">
+                                <th style="padding:10px; border:1px solid #dee2e6; text-align: left;">Duration</th>
+                                <th style="padding:10px; border:1px solid #dee2e6;">₹10k/mo</th>
+                                <th style="padding:10px; border:1px solid #dee2e6;">₹20k/mo</th>
+                                <th style="padding:10px; border:1px solid #dee2e6;">₹30k/mo</th>
+                                <th style="padding:10px; border:1px solid #dee2e6;">₹50k/mo</th>
+                                <th style="padding:10px; border:1px solid #dee2e6;">₹1 Lakh/mo</th>
+                            </tr>
+                            <tr style="background:#fff;">
+                                <td style="padding:10px; border:1px solid #dee2e6; text-align: left; font-weight:bold;">
+                                    5 Years</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹8.25 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹16.5 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹24.7 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹41.2 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹82.5 L</td>
+                            </tr>
+                            <tr style="background:#f8f9fa;">
+                                <td style="padding:10px; border:1px solid #dee2e6; text-align: left; font-weight:bold;">
+                                    10 Years</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹23.2 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹46.5 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹69.7 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹1.16 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹2.32 Cr</td>
+                            </tr>
+                            <tr style="background:#fff;">
+                                <td style="padding:10px; border:1px solid #dee2e6; text-align: left; font-weight:bold;">
+                                    15 Years</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹50.5 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹1.01 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹1.51 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹2.52 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹5.05 Cr</td>
+                            </tr>
+                            <tr style="background:#f8f9fa;">
+                                <td style="padding:10px; border:1px solid #dee2e6; text-align: left; font-weight:bold;">
+                                    20 Years</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹99.9 L</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹2.00 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹3.00 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹5.00 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹9.99 Cr</td>
+                            </tr>
+                            <tr style="background:#fff;">
+                                <td style="padding:10px; border:1px solid #dee2e6; text-align: left; font-weight:bold;">
+                                    25 Years</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹1.90 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹3.80 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹5.70 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹9.49 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹18.9 Cr</td>
+                            </tr>
+                            <tr style="background:#f8f9fa;">
+                                <td style="padding:10px; border:1px solid #dee2e6; text-align: left; font-weight:bold;">
+                                    30 Years</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹3.53 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹7.06 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹10.6 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹17.6 Cr</td>
+                                <td style="padding:10px; border:1px solid #dee2e6;">₹35.3 Cr</td>
+                            </tr>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Strategies Content Merged -->
+                <div id="strategies" style="margin-top: 60px; padding-top: 20px; border-top: 2px solid #ecf0f1;">
+                    <h2 class="page-title">Investment Strategies to Maximize Wealth</h2>
+                    <p class="intro" style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Investing is not
+                        just about choosing the right fund; it's about the discipline and strategy you use. Here are
+                        powerful concepts that can supercharge your returns.</p>
+
+                    <!-- Strategy 1: Power of Compounding -->
+                    <div class="strategy-section">
+                        <h2>1. The Cost of Delay (Power of Compounding)</h2>
+                        <p>Compound interest is often called the eighth wonder of the world. The earlier you start, the
+                            more time your money has to grow on itself. Delaying your investment by just a few years can
+                            cost you significantly in the long run.</p>
+
+                        <div class="highlight-box">
+                            <strong>Key Insight:</strong> Starting 10 years earlier can often result in double the
+                            corpus, even if you invest the same monthly amount!
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="compoundingChart"></canvas>
+                        </div>
+
+                        <p>In the chart above, you can see how <strong>Starter A</strong> ends up with a significantly
+                            larger corpus by starting at age 25, compared to <strong>Starter B</strong> who starts at
+                            35, even though both invest until age 60.</p>
+                    </div>
+
+                    <!-- Strategy 2: Step-Up SIP -->
+                    <div class="strategy-section">
+                        <h2>2. Step-Up SIP (Top-Up SIP)</h2>
+                        <p>As your income grows, your investments should grow too. A Step-Up SIP involves increasing
+                            your SIP amount by a fixed percentage (e.g., 10%) every year. This small change combats
+                            inflation and drastically increases your final corpus.</p>
+
+                        <table class="strategy-section table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Regular SIP (₹10k/mo)</th>
+                                    <th>10% Step-Up SIP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Duration</td>
+                                    <td>20 Years</td>
+                                    <td>20 Years</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Invested</td>
+                                    <td>₹24 Lakhs</td>
+                                    <td>₹68.7 Lakhs</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Final Corpus (@12%)</strong></td>
+                                    <td><strong>₹99.9 Lakhs</strong></td>
+                                    <td><strong>₹2.05 Crores</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="chart-container">
+                            <canvas id="stepUpChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Strategy 3: Rupee Cost Averaging -->
+                    <div class="strategy-section">
+                        <h2>3. Rupee Cost Averaging</h2>
+                        <p>One of the biggest fears investors have is "Is this the right time to invest?". Rupee Cost
+                            Averaging makes this question irrelevant.</p>
+                        <p>By investing a fixed amount regularly, you buy more units when the market is low and fewer
+                            units when the market is high.</p>
+
+                        <h3>Example Scenario</h3>
+                        <p>Investing ₹5,000 every month for 4 months:</p>
+                        <table class="strategy-section table">
+                            <tr>
+                                <th>Month</th>
+                                <th>NAV (Price per unit)</th>
+                                <th>Units Bought</th>
+                            </tr>
+                            <tr>
+                                <td>Jan</td>
+                                <td>₹50 (Market High)</td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td>Feb</td>
+                                <td>₹40 (Market Crash)</td>
+                                <td>125</td>
+                            </tr>
+                            <tr>
+                                <td>Mar</td>
+                                <td>₹25 (Market Bottom)</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Apr</td>
+                                <td>₹45 (Recovery)</td>
+                                <td>111</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td><strong>Avg NAV: ₹40</strong></td>
+                                <td><strong>Total Units: 536</strong></td>
+                            </tr>
+                        </table>
+                        <p>At the end, with market at ₹45 (lower than start), your value is 536 units * ₹45 =
+                            <strong>₹24,120</strong> (Profit), even though market is down from peak!
+                        </p>
+                    </div>
+                </div>
+
                 <article class="faq-section" style="margin-top: 30px;">
                     <h2>Frequently Asked Questions</h2>
                     <div class="faq-item">
@@ -562,6 +842,7 @@
         </div>
     </footer>
 
+    <script src="js/strategies.js"></script>
     <script>
         // Format number with commas
         function formatNumberWithCommas(num) {

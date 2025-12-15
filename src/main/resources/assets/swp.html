@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWP Calculator - Inflation Adjusted Systematic Withdrawal Plan</title>
+    <meta name="description"
+        content="Calculate your Systematic Withdrawal Plan (SWP) with inflation adjustment. Determine how long your corpus will last with monthly withdrawals.">
+    <link rel="canonical" href="https://investinsip.in/swp.html">
+    <meta name="keywords"
+        content="SWP Calculator, Systematic Withdrawal Plan, Monthly Income Plan, Mutual Fund SWP, Inflation Adjusted SWP, Retirement Planning">
+    <meta name="author" content="InvestInSIP">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://investinsip.in/swp.html">
+    <meta property="og:title" content="Free SWP Calculator - Plan Your Regular Income">
+    <meta property="og:description"
+        content="Plan your retirement withdrawals with our free inflation-adjusted SWP calculator. See when your corpus might be exhausted.">
+    <meta property="og:image" content="https://investinsip.in/assets/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialProduct",
+      "name": "InvestInSIP SWP Calculator",
+      "description": "Calculator to help investors plan systematic withdrawals from their mutual fund investments, accounting for inflation and returns.",
+      "url": "https://investinsip.in/swp.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "featureList": "Inflation-Adjusted Withdrawals, Corpus Exhaustion Analysis, Real vs Nominal Value"
+    }
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9271026697232246"
+        crossorigin="anonymous"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .app-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ad-sidebar {
+            width: 300px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .ad-container {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .app-container {
+                flex-direction: column;
+            }
+
+            .ad-sidebar {
+                width: 100%;
+                position: static;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .ad-container {
+                width: calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .ad-container {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: left;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 2rem;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px 16px;
+            align-items: end;
+        }
+
+        .col {
+            min-width: 220px;
+        }
+
+        /* Header Styles */
+        .app-header {
+            background: #2c3e50;
+            color: white;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link {
+            padding: 10px 15px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .card {
+            background: #f9fbfc;
+            border: 1px solid #e5eef3;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #34495e;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cfd8dc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: 0;
+            background: #27ae60;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            height: 42px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #2ecc71;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 992px) {
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metric {
+            background: #fff;
+            border: 1px solid #e5eef3;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .metric .label {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .metric .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .content-section {
+            margin-top: 40px;
+            border-top: 1px solid #e9ecef;
+            padding-top: 20px;
+        }
+
+        .info-card {
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- Top Header Bar -->
+    <header class="app-header">
+        <div class="header-content">
+            <a href="/" class="logo">InvestInSIP</a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link">SIP Calculator</a>
+                <a href="/swp.html" class="nav-link active">SWP Calculator</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <main class="main-content">
+            <h1 class="page-title">SWP Calculator</h1>
+            <p style="font-size: 1.1rem; color: #555;">Plan your systematic withdrawals and retirement income
+                efficiently.</p>
+
+            <div class="card">
+                <div class="row">
+                    <div class="col">
+                        <label for="swpInitial">Initial Corpus Amount (₹)</label>
+                        <input id="swpInitial" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off"
+                            value="50,00,000" />
+                    </div>
+                    <div class="col">
+                        <label for="swpMonthly">Monthly Withdrawal (₹)</label>
+                        <input id="swpMonthly" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off"
+                            value="30,000" />
+                    </div>
+                    <div class="col">
+                        <label for="swpRoi">Expected Annual Return (% p.a.)</label>
+                        <input id="swpRoi" type="number" min="0" step="0.1" value="9" />
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col">
+                        <label for="swpInflation">Expected Inflation (% p.a.)</label>
+                        <input id="swpInflation" type="number" min="0" step="0.1" value="6" />
+                        <span style="font-size: 12px; color: #7f8c8d;">Used to adjust withdrawal amount annually if
+                            needed</span>
+                    </div>
+                    <div class="col">
+                        <label for="swpYears">Duration (Years)</label>
+                        <input id="swpYears" type="number" min="1" step="1" value="25" />
+                    </div>
+                    <div class="col" style="display:flex; align-items:flex-end;">
+                        <button id="swpCalcBtn">Calculate SWP</button>
+                    </div>
+                </div>
+                <div class="metrics" id="swpMetrics" style="display:none;">
+                    <div class="metric">
+                        <div class="label">Total Withdrawn</div>
+                        <div class="value" id="swpWithdrawn">₹0</div>
+                    </div>
+                    <div class="metric">
+                        <div class="label">Final Corpus Value</div>
+                        <div class="value" id="swpFinalCorpus">₹0</div>
+                    </div>
+                    <div class="metric">
+                        <div class="label">Last Monthly Payout</div>
+                        <div class="value" id="swpLastMonthly">₹0</div>
+                    </div>
+                    <div class="metric">
+                        <div class="label">Corpus Exhausted In</div>
+                        <div class="value" id="swpExhausted" style="color: #e74c3c;">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <canvas id="swpChart" height="120"></canvas>
+            </div>
+
+            <div class="content-section">
+                <article class="info-card">
+                    <h2>What is a Systematic Withdrawal Plan (SWP)?</h2>
+                    <p>A <strong>Systematic Withdrawal Plan (SWP)</strong> is a facility provided by mutual funds that
+                        allows an investor to withdraw a fixed or variable amount from their investment at
+                        pre-determined intervals (monthly, quarterly, semi-annually, or annually). It is the opposite of
+                        a SIP (Systematic Investment Plan).</p>
+                    <p>SWPs are widely used by retirees to create a steady source of income from their accumulated
+                        retirement corpus. Instead of keeping money idle in a savings account, an SWP allows your corpus
+                        to stay invested in mutual funds (generating potentially higher returns) while providing you
+                        with regular cash flow.</p>
+                </article>
+
+                <article class="info-card">
+                    <h2>How Does SWP Work?</h2>
+                    <p>When you set up an SWP, you instruct the mutual fund house to redeem a specific amount of units
+                        equivalent to the cash you need. For example:</p>
+                    <ul>
+                        <li>If you have 10,000 units in a fund and the NAV is ₹20.</li>
+                        <li>You want to withdraw ₹5,000.</li>
+                        <li>The fund house will redeem 250 units (5000 / 20) and credit the amount to your bank account.
+                        </li>
+                        <li>Your remaining units will be 9,750, which will continue to grow according to market
+                            performance.</li>
+                    </ul>
+                </article>
+
+                <article class="info-card">
+                    <h2>Benefits of SWP</h2>
+                    <ul>
+                        <li><strong>Regular Income Stream:</strong> Provides predictability and stability, essential for
+                            post-retirement expenses.</li>
+                        <li><strong>Tax Efficiency:</strong> SWPs are more tax-efficient than traditional Fixed Deposit
+                            interest. In an SWP, only the capital gains part of the withdrawal is taxed, not the entire
+                            principal.</li>
+                        <li><strong>Rupee Cost Averaging (in reverse):</strong> You redeem fewer units when markets are
+                            high and more units when markets are down, but since the goal is income, the focus remains
+                            on the cash flow.</li>
+                        <li><strong>Capital Growth:</strong> If your withdrawal rate (e.g., 6%) is lower than the fund's
+                            return rate (e.g., 10%), your corpus will actually grow over time despite withdrawals.</li>
+                    </ul>
+                </article>
+
+                <article class="info-card">
+                    <h2>SWP vs Dividend Plan (IDCW)</h2>
+                    <p>Many investors choose the Dividend option (now called IDCW) for regular income. However, SWP is
+                        far more tax-efficient and reliable.</p>
+                    <table class="table" style="width:100%; border-collapse: collapse; margin-top:15px;">
+                        <tr style="background:#f8f9fa;">
+                            <th style="padding:10px; border:1px solid #dee2e6;">Feature</th>
+                            <th style="padding:10px; border:1px solid #dee2e6;">SWP (Growth Option)</th>
+                            <th style="padding:10px; border:1px solid #dee2e6;">Dividend (IDCW)</th>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #dee2e6;"><strong>Certainty</strong></td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Fixed amount, guaranteed frequency</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Uncertain, depends on fund profits</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #dee2e6;"><strong>Principal Protection</strong>
+                            </td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">High (if withdrawal < returns)</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">NAV falls by dividend amount</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #dee2e6;"><strong>Taxation</strong></td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Only gains taxed (Capital Gains)</td>
+                            <td style="padding:10px; border:1px solid #dee2e6;">Entire amount taxed as Income</td>
+                        </tr>
+                    </table>
+                </article>
+
+                <article class="info-card">
+                    <h2>The Golden Rule: The Cool-Down Period</h2>
+                    <p>Starting an SWP immediately after retiring can be risky due to <strong>Sequence of Returns
+                            Risk</strong>. If the market crashes right when you start withdrawing, you are forced to
+                        sell more units at low prices, depleting your corpus much faster.</p>
+
+                    <div
+                        style="background-color: #fff8e1; border-left: 4px solid #f1c40f; padding: 15px; margin: 20px 0;">
+                        <strong style="color: #d35400;">💡 Strategy:</strong> Keep <strong>1 to 3 years of
+                            expenses</strong> in a liquid fund or Fixed Deposit (The Cool-Down Bucket).
+                    </div>
+
+                    <p>If the market is down, withdraw from this "Cool-down Bucket" and let your equity corpus recover.
+                        If the market is up, you can withdraw from your equity returns. This simple buffer can extend
+                        the life of your retirement fund by several years!</p>
+                </article>
+
+                <article class="info-card">
+                    <h2>Taxation on SWP</h2>
+                    <p>SWP withdrawals are treated as redemptions. The tax depends on the type of fund (Equity or Debt)
+                        and the holding period.</p>
+                    <ul>
+                        <li><strong>Equity Funds (Holding > 1 year):</strong> Gains up to ₹1 Lakh per financial year are
+                            tax-free. Gains above ₹1 Lakh are taxed at 10% (LTCG).</li>
+                        <li><strong>Equity Funds (Holding < 1 year):</strong> Taxed at 15% (STCG).</li>
+                        <li><strong>Debt Funds:</strong> Taxed as per your income tax slab (for investments made after
+                            April 1, 2023).</li>
+                    </ul>
+                </article>
+            </div>
+        </main>
+
+        <aside class="ad-sidebar">
+            <!-- AdSense Ad Unit: sidebar-swp -->
+            <div class="ad-container">
+                <p style="color: #999; font-size: 0.8rem;">Advertisement</p>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9271026697232246"
+                    data-ad-slot="5235662141" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </aside>
+    </div>
+
+    <footer style="background: #2c3e50; color: #ecf0f1; padding: 40px 0; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 20px;">
+            <p>&copy; 2025 InvestInSIP. All rights reserved.</p>
+            <div style="margin-top: 15px;">
+                <a href="/privacy.html" style="color: #bdc3c7; text-decoration: none; margin: 0 10px;">Privacy
+                    Policy</a> |
+                <a href="/terms.html" style="color: #bdc3c7; text-decoration: none; margin: 0 10px;">Terms of
+                    Service</a> |
+                <a href="/about.html" style="color: #bdc3c7; text-decoration: none; margin: 0 10px;">About Us</a>
+            </div>
+            <p style="font-size: 0.8rem; color: #95a5a6; margin-top: 20px;">
+                Disclaimer: Mutual Fund investments are subject to market risks, read all scheme related documents
+                carefully.
+                The information provided here is for educational purposes only.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Shared Logic (Duplicate of index.html logic but specific for SWP page) ---
+        // Ideally this should be in a shared js file but keeping inline for simplicity as per existing structure
+
+        function formatNumberWithCommas(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function handleNumberInput(event) {
+            const input = event.target;
+            const cursorPos = input.selectionStart || 0;
+            const digitsLeft = input.value.slice(0, cursorPos).replace(/[^0-9]/g, '').length;
+            const raw = input.value.replace(/[^0-9]/g, '');
+            const formatted = raw ? formatNumberWithCommas(parseInt(raw, 10)) : '';
+            if (formatted !== input.value) {
+                input.value = formatted;
+                let seen = 0;
+                let newPos = 0;
+                for (let i = 0; i < formatted.length; i++) {
+                    if (/\d/.test(formatted[i])) seen++;
+                    newPos = i + 1;
+                    if (seen >= digitsLeft) break;
+                }
+                if (digitsLeft === 0) newPos = 0;
+                if (seen < digitsLeft) newPos = formatted.length;
+                input.setSelectionRange(newPos, newPos);
+            }
+        }
+
+        function parseFormattedNumber(str) {
+            return parseInt(str.replace(/,/g, '')) || 0;
+        }
+
+        function fmtINR(x) {
+            const abs = Math.abs(x);
+            const sign = x < 0 ? '-' : '';
+            if (abs >= 1e7) { return sign + (abs / 1e7).toFixed(2).replace(/\.00$/, '') + ' Cr'; }
+            if (abs >= 1e5) { return sign + (abs / 1e5).toFixed(2).replace(/\.00$/, '') + ' L'; }
+            return sign + new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(abs);
+        }
+
+        // SWP API Call
+        async function fetchSwp({ initial, monthlyWithdrawal, roi, inflation, years }) {
+            const res = await fetch('/api/swp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ initial, monthlyWithdrawal, roi, inflation, years })
+            });
+            if (!res.ok) throw new Error('SWP API failed: ' + res.status);
+            return res.json();
+        }
+
+        let swpChart;
+        function renderSwpChart(data) {
+            const ctx = document.getElementById('swpChart').getContext('2d');
+            if (swpChart) swpChart.destroy();
+            swpChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: 'Corpus (Nominal)',
+                            data: data.corpusSeries,
+                            borderColor: '#8e44ad',
+                            backgroundColor: 'rgba(142,68,173,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Corpus (Real)',
+                            data: data.realCorpusSeries,
+                            borderColor: '#e67e22',
+                            backgroundColor: 'rgba(230,126,34,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Total Withdrawn',
+                            data: data.withdrawnSeries,
+                            borderColor: '#16a085',
+                            backgroundColor: 'rgba(22,160,133,0.08)',
+                            tension: 0.2,
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ₹${fmtINR(ctx.parsed.y)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { ticks: { callback: (val) => '₹' + fmtINR(val) } }
+                    }
+                }
+            });
+        }
+
+        async function handleSwpCalculate() {
+            const initial = parseFormattedNumber(document.getElementById('swpInitial').value);
+            const monthlyWithdrawal = parseFormattedNumber(document.getElementById('swpMonthly').value);
+            const roi = parseFloat(document.getElementById('swpRoi').value) || 0;
+            const inflation = parseFloat(document.getElementById('swpInflation').value) || 0;
+            const years = parseInt(document.getElementById('swpYears').value) || 0;
+            if (years <= 0) return;
+            try {
+                // Tracking
+                try { await fetch('/api/analytics/hit', { method: 'POST' }); } catch (e) { }
+
+                const result = await fetchSwp({ initial, monthlyWithdrawal, roi, inflation, years });
+                renderSwpChart(result);
+                document.getElementById('swpMetrics').style.display = 'grid';
+                document.getElementById('swpWithdrawn').innerText = '₹' + fmtINR(result.totalWithdrawn);
+                document.getElementById('swpFinalCorpus').innerText = '₹' + fmtINR(result.finalCorpus);
+                document.getElementById('swpLastMonthly').innerText = '₹' + fmtINR(result.lastMonthlyWithdrawal);
+
+                const exhaustedEl = document.getElementById('swpExhausted');
+                if (result.exhaustedYear) {
+                    exhaustedEl.innerText = result.exhaustedYear;
+                    exhaustedEl.style.color = '#c0392b';
+                } else {
+                    exhaustedEl.innerText = 'Never';
+                    exhaustedEl.style.color = '#27ae60';
+                }
+            } catch (e) {
+                alert('Failed to calculate SWP. Please try again.');
+                console.error(e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inputs
+            const amountInputs = ['swpInitial', 'swpMonthly'];
+            amountInputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', handleNumberInput);
+                }
+            });
+
+            document.getElementById('swpCalcBtn').addEventListener('click', handleSwpCalculate);
+
+            // Auto calc on load
+            handleSwpCalculate();
+        });
+    </script>
+</body>
+
+</html>
