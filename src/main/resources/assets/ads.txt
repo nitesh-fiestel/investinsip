@@ -1,0 +1,3 @@
+# Infolinks ads.txt
+# Please replace this content with the actual ads.txt content provided by Infolinks
+# Example line: infolinks.com, <publisher_id>, DIRECT, <certification_id>

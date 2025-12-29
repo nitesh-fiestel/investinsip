@@ -32,6 +32,12 @@ public class RateLimitFilter implements Filter {
 
         Bucket bucket = buckets.computeIfAbsent(ip, k -> createNewBucket());
 
+        // Whitelist Infolinks crawler IP
+        if ("35.222.199.65".equals(ip)) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         if (bucket.tryConsume(1)) {
             chain.doFilter(request, response);
         } else {
